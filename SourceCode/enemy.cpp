@@ -105,6 +105,8 @@ void enemy_update()
 
         enemy_moveX();
 
+        enemy_moveY();
+
         for (int i = 0; i < ENEMY_MAX; i++) {
             if (enemy[i].moveAlg == -1)continue;
 
@@ -140,81 +142,56 @@ void enemy_render()
 }
 void enemy_moveX() {
 
+    if (enemy[0].pos.x > SCREEN_W / 2) enemy[0].pos.x -= speed[0];
+    else enemy[0].pos.x += speed[0];
 
-    enemy[0].pos.x += speed[0];
-    enemy[1].pos.x += speed[1];
-    enemy[2].pos.x += speed[2];
-    if (enemy[0].pos.x > 1280) {
-        enemy[0].pos.x = 1280;
-        speed[0] *= -1;
-    }
-    if (enemy[1].pos.x > 1280) {
-        enemy[1].pos.x = 1280;
-        speed[1] *= -1;
-    }
-    if (enemy[2].pos.x > 1280) {
-        enemy[2].pos.x = 1280;
-        speed[2] *= -1;
-    }
-    if (enemy[0].pos.x < 0) {
-        enemy[0].pos.x = 0;
-        speed[0] *= -1;
-    }
-    if (enemy[1].pos.x < 0) {
-        enemy[1].pos.x = 0;
-        speed[1] *= -1;
-    }
-    if (enemy[2].pos.x < 0) {
-        enemy[2].pos.x = 0;
-        speed[2] *= -1;
-    }
+    if (enemy[1].pos.x > SCREEN_W / 2) enemy[1].pos.x -= speed[1];
+    else enemy[1].pos.x += speed[1];
 
-    enemy[3].pos.x += speed[3];
-    enemy[4].pos.x += speed[4];
-    enemy[5].pos.x += speed[5];
-    if (enemy[3].pos.x > 1280) {
-        enemy[3].pos.x = 1280;
-        speed[3] *= -1;
-    }
-    if (enemy[4].pos.x > 1280) {
-        enemy[4].pos.x = 1280;
-        speed[4] *= -1;
-    }
-    if (enemy[5].pos.x > 1280) {
-        enemy[5].pos.x = 1280;
-        speed[5] *= -1;
-    }
-    if (enemy[3].pos.x < 0) {
-        enemy[3].pos.x = 0;
-        speed[3] *= -1;
-    }
-    if (enemy[4].pos.x < 0) {
-        enemy[4].pos.x = 0;
-        speed[4] *= -1;
-    }
-    if (enemy[5].pos.x < 0) {
-        enemy[5].pos.x = 0;
-        speed[5] *= -1;
-    }
+    if (enemy[2].pos.x > SCREEN_W / 2) enemy[2].pos.x -= speed[2];
+    else enemy[2].pos.x += speed[2];
 
-    enemy[6].pos.x += speed[6];
-    enemy[7].pos.x += speed[7];
-    if (enemy[6].pos.x > 1280) {
-        enemy[6].pos.x = 1280;
-        speed[6] *= -1;
-    }
-    if (enemy[7].pos.x > 1280) {
-        enemy[7].pos.x = 1280;
-        speed[7] *= -1;
-    }
-    if (enemy[6].pos.x < 0) {
-        enemy[6].pos.x = 0;
-        speed[6] *= -1;
-    }
-    if (enemy[7].pos.x < 0) {
-        enemy[7].pos.x = 0;
-        speed[7] *= -1;
-    }
+    if (enemy[3].pos.x > SCREEN_W / 2) enemy[3].pos.x -= speed[3];
+    else enemy[3].pos.x += speed[3];
+
+    if (enemy[4].pos.x > SCREEN_W / 2) enemy[4].pos.x -= speed[4];
+    else enemy[4].pos.x += speed[4];
+
+    if (enemy[5].pos.x > SCREEN_W / 2) enemy[5].pos.x -= speed[5];
+    else enemy[5].pos.x += speed[5];
+    
+    if (enemy[6].pos.x > SCREEN_W / 2) enemy[6].pos.x -= speed[6];
+    else enemy[6].pos.x += speed[6];
+
+    if (enemy[7].pos.x > SCREEN_W / 2) enemy[7].pos.x -= speed[7];
+    else enemy[7].pos.x += speed[7];
+}
+void enemy_moveY()
+{
+    if (enemy[0].pos.y > SCREEN_H / 2)  enemy[0].pos.y -= speed[0];
+    else enemy[0].pos.y += speed[0];
+
+
+    if (enemy[1].pos.y > SCREEN_H / 2)  enemy[1].pos.y -= speed[1];
+    else enemy[1].pos.y += speed[1];
+
+    if (enemy[2].pos.y > SCREEN_H / 2)  enemy[2].pos.y -= speed[2];
+    else enemy[2].pos.y += speed[2];
+
+    if (enemy[3].pos.y > SCREEN_H / 2)  enemy[3].pos.y -= speed[3];
+    else enemy[3].pos.y += speed[3];
+
+    if (enemy[4].pos.y > SCREEN_H / 2)  enemy[4].pos.y -= speed[4];
+    else enemy[4].pos.y += speed[4];
+
+    if (enemy[5].pos.y > SCREEN_H / 2)  enemy[5].pos.y -= speed[5];
+    else enemy[5].pos.y += speed[5];
+
+    if (enemy[6].pos.y > SCREEN_H / 2)  enemy[6].pos.y -= speed[6];
+    else enemy[6].pos.y += speed[6];
+
+    if (enemy[7].pos.y > SCREEN_H / 2)  enemy[7].pos.y -= speed[7];
+    else enemy[7].pos.y += speed[7];
 }
 
 void moveEnemy0(OBJ2D* obj)
