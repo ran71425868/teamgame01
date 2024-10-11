@@ -16,7 +16,7 @@ void tower_init()
     tower_state = 0;
 }
 //--------------------------------------
-//  プレイヤーの終了処理
+// 　タワーの終了処理
 //--------------------------------------
 void tower_deinit()
 {
@@ -25,7 +25,7 @@ void tower_deinit()
 }
 
 //--------------------------------------
-//  プレイヤーの更新処理
+//  タワーの更新処理
 //--------------------------------------
 void tower_update()
 {
@@ -62,25 +62,9 @@ void tower_update()
     case 2:
         //////// 通常時 ////////
 
-      
-
-        // 位置に速度を足す
-       
 
 
-        // 地面とのあたり判定（仮）
-        if (player.pos.y > GROUND_Y) {
-            player.pos.y = GROUND_Y;
-            player.speed.y = 0.0f;
-        }
-
-        // プレイヤーの左右のエリアチェック
-        if (player.pos.x < 0 + WALL_RIGHT) {
-            player.pos.x = 0 + WALL_RIGHT;
-        }
-        if (player.pos.x > WALL_LEFT) {
-            player.pos.x = WALL_LEFT;
-        }
+        
 
         break;
     }
@@ -88,6 +72,6 @@ void tower_update()
 
 void tower_render()
 {
-    //プレイヤーの描画
+    //タワーの描画
     sprite_render(sprTower, tower.pos.x, tower.pos.y, tower.scale.x, tower.scale.y, tower.texPos.x, tower.texPos.y, tower.texSize.x, tower.texSize.y, tower.pivot.x, tower.pivot.y, ToRadian(0), tower.color.x, tower.color.y);
 }

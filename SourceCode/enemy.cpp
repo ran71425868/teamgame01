@@ -27,14 +27,14 @@ struct ENEMY_SET {
     VECTOR2 pos;
 }
 enemySet[] = {
-    {0,{  300, 540}},
-    {0,{  500, 540}},
-    {0,{  100, 540}},
-    {1,{  200, 540}},
-    {1,{  1000,540 }},
-    {1,{  700, 540}},
-    {2,{  800, 540}},
-    {2,{  400, 540}},
+    {0,{  300, 0}},
+    {0,{  500, 720}},
+    {0,{  100, 0}},
+    {1,{  200, 720}},
+    {1,{  1000,0 }},
+    {1,{  700, 720}},
+    {2,{  800, 0}},
+    {2,{  400, 720}},
     {-1,{  -1, -1 }},
 };
 //--------------------------------------
@@ -102,7 +102,10 @@ void enemy_update()
             OBJ2D* p = searchSet0(enemy, ENEMY_MAX, enemySet[i].enemyType, enemySet[i].pos);
             if (!p) break;
         }
-
+        for (int i = 0; enemySet[i].enemyType >= 0; i++) {
+            rnd = rand() % 1281;
+            enemySet[i].pos.x = rnd;
+        }
         enemy_moveX();
 
         enemy_moveY();

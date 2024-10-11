@@ -2,6 +2,7 @@
 
 extern OBJ2D player;
 extern OBJ2D enemy[ENEMY_MAX];
+extern OBJ2D tower;
 
 //“–‚½‚è”»’è
 bool hitCheckCircle(VECTOR2 pos1, float r1, VECTOR2 pos2, float r2) {
