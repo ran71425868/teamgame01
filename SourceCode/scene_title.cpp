@@ -1,7 +1,5 @@
 #include "all.h"
 
-// test
-
 int title_state;
 int title_timer;
 
