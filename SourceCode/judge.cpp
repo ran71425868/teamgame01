@@ -34,8 +34,8 @@ void judge()
 
             sound::play(XWB_SYSTEM, XWB_SYSTEM_SHOT);
 
-            player.speed.x = 0.0f;
-            player.speed.y = -13.0f;
+           /* player.speed.x = 0.0f;
+            player.speed.y = -13.0f;*/
             if (player.pos.y == SCREEN_H / 2) {
                 player.speed.y = 0.0f;
             }

@@ -96,24 +96,13 @@ void player_render()
 
 void player_moveY()
 {
-    //é©ìÆãAä“
-    if (player.pos.y == 600) {
-        player.speed.x = 0.0f;
-        player.speed.y = -13.0f;
-        if (player.pos.y == SCREEN_H / 2) {
-            player.speed.y = 0.0f;
-        }
-    }
-}
-
-
-void player_moveX()
-{
-
-    //îCà”ÇÃëÄçÏÇ…ÇÊÇÈà⁄ìÆ
-
     if (STATE(0) & PAD_DOWN && !(STATE(0) & PAD_UP)) {
         player.speed.y += PLAYER_ACCEL_Y;
+        player.scale.y = 1.0f;
+
+    }
+    else if (STATE(0) & PAD_UP && !(STATE(0) & PAD_DOWN)) {
+        player.speed.y -= PLAYER_ACCEL_Y;
         player.scale.y = 1.0f;
 
     }
@@ -132,6 +121,13 @@ void player_moveX()
 
         }
     }
+}
+
+
+void player_moveX()
+{
+
+    //îCà”ÇÃëÄçÏÇ…ÇÊÇÈà⁄ìÆ
 
     if (STATE(0) & PAD_LEFT && !(STATE(0) & PAD_RIGHT)) {
         player.speed.x -= PLAYER_ACCEL_X;
