@@ -102,7 +102,10 @@ void enemy_update()
             OBJ2D* p = searchSet0(enemy, ENEMY_MAX, enemySet[i].enemyType, enemySet[i].pos);
             if (!p) break;
         }
-
+        for (int i = 0; enemySet[i].enemyType >= 0; i++) {
+            rnd = rand() % 1281;
+            enemySet[i].pos.x = rnd;
+        }
         enemy_moveX();
 
         enemy_moveY();
