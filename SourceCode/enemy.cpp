@@ -171,7 +171,7 @@ void enemy_moveX() {
 }
 void enemy_moveY()
 {
-    if (enemy[0].pos.y > SCREEN_H / 2)  enemy[0].pos.y -= speed[0];
+   /* if (enemy[0].pos.y > SCREEN_H / 2)  enemy[0].pos.y -= speed[0];
     else enemy[0].pos.y += speed[0];
 
 
@@ -194,7 +194,7 @@ void enemy_moveY()
     else enemy[6].pos.y += speed[6];
 
     if (enemy[7].pos.y > SCREEN_H / 2)  enemy[7].pos.y -= speed[7];
-    else enemy[7].pos.y += speed[7];
+    else enemy[7].pos.y += speed[7];*/
 }
 
 void moveEnemy0(OBJ2D* obj)
