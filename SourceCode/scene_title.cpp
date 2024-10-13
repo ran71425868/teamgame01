@@ -3,21 +3,18 @@
 int title_state;
 int title_timer;
 
-Sprite* sprCar;
-
 void title_init() {
 	title_state = 0;
 	title_timer = 0;
 }
 void title_deinit() {
 	music::stop(2);
-	safe_delete(sprCar);
+	
 }
 void title_update() {
 	switch (title_state) {
 	case 0:
 		//////// ‰Šúİ’è ////////
-		sprCar = sprite_load(L"./Data/Images/right.png");
 		audio_init();
 		title_state++;
 		/*fallthrough*/
