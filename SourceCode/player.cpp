@@ -69,16 +69,19 @@ void player_update()
         // 位置に速度を足す
         player.pos += player.speed;
 
-
-        // 地面とのあたり判定（仮）
-        
-
-        // プレイヤーの左右のエリアチェック
+        // プレイヤーの上下左右のエリアチェック
         if (player.pos.x < 0 + WALL_RIGHT) {
             player.pos.x = 0 + WALL_RIGHT;
         }
         if (player.pos.x > WALL_LEFT) {
             player.pos.x = WALL_LEFT;
+        }
+
+        if (player.pos.y < 0 + WALL_UP) {
+            player.pos.y = 0 + WALL_UP;
+        }
+        if (player.pos.y > WALL_DOWN) {
+            player.pos.y = WALL_DOWN;
         }
 
         break;

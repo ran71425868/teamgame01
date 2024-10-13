@@ -32,6 +32,8 @@
 //ï«ÇÃîªíË
 #define WALL_LEFT          SCREEN_W - PLAYER_TEX_W * 0.5f
 #define WALL_RIGHT          PLAYER_TEX_W * 0.5f
+#define WALL_DOWN          SCREEN_H - PLAYER_TEX_H * 0.5f
+#define WALL_UP             PLAYER_TEX_H * 0.5f
 
 
 //ínñ ÇÃçÇÇ≥
