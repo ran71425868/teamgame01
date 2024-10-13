@@ -4,6 +4,7 @@
 int game_state;
 int game_timer;
 int score;
+int hp;
 int count;
 
 extern int player_state;
@@ -20,6 +21,7 @@ void game_init() {
 	game_state = 0;
 	game_timer = 0;
 	score = 0;
+	hp = 100;
 }
 void game_deinit() {
 	music::stop(0);
@@ -80,6 +82,7 @@ void game_render() {
 	text_out(0, "score", 0, 70, 2, 2);
 	text_out(0, std::to_string(score), 0, 100, 2, 2);
 	text_out(4, "Down:S Right: D Left: A", 0, 150, 1, 1);
+	text_out(0, std::to_string(hp), 0, 200, 2, 2);
 
 	player_render();
 	enemy_render();
@@ -97,5 +100,20 @@ void game_score() {
 	for (int i = 6; i < 8; i++) {
 		if (enemy[i].moveAlg == -1)
 			score += 30;
+	}
+}
+
+void tower_hp() {
+	for (int i = 0; i < 3; i++) {
+		if (enemy[i].moveAlg == -1)
+			hp -= 10;
+	}
+	for (int i = 3; i < 6; i++) {
+		if (enemy[i].moveAlg == -1)
+			hp -= 20;
+	}
+	for (int i = 6; i < 8; i++) {
+		if (enemy[i].moveAlg == -1)
+			hp -= 30;
 	}
 }

@@ -2,7 +2,7 @@
 #include	<stdlib.h>
 #include	<time.h>
 
-int rnd;
+int rndX;
 int enemy_state;
 int speed[8] = { 5,5,5,10,10,10,13,13 };
 
@@ -47,8 +47,8 @@ void enemy_init()
 
     srand((unsigned)time(NULL));
     for (int i = 0; enemySet[i].enemyType >= 0; i++) {
-        rnd = rand() % 1281;
-        enemySet[i].pos.x = rnd;
+        rndX = rand() % 1281;
+        enemySet[i].pos.x = rndX;
     }
 }
 
@@ -103,20 +103,8 @@ void enemy_update()
         }
 
         for (int i = 0; enemySet[i].enemyType >= 0; i++) {
-            rnd = rand() % 1281;
-            enemySet[i].pos.x = rnd;
-        }
-
-        for (int i = 0; enemySet[i].enemyType >= 0; i++) {
-            enemySet[0].pos.y = 0;
-            enemySet[1].pos.y = 0;
-            enemySet[2].pos.y = 0;
-            enemySet[3].pos.y = 0;
-
-            enemySet[4].pos.y = 720;
-            enemySet[5].pos.y = 720;
-            enemySet[6].pos.y = 720;
-            enemySet[7].pos.y = 720;
+            rndX = rand() % 1281;
+            enemySet[i].pos.x = rndX;
         }
 
         enemy_moveX();

@@ -8,5 +8,6 @@ void game_update();
 void game_render();
 
 void game_score();
+void tower_hp();
 
 #endif//SCENE_GAME_H

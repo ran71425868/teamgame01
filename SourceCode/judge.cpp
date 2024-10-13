@@ -35,12 +35,20 @@ void judge()
 
             sound::play(XWB_SYSTEM, XWB_SYSTEM_SHOT);
 
-           /* player.speed.x = 0.0f;
-            player.speed.y = -13.0f;*/
-            if (player.pos.y == SCREEN_H / 2) {
-                player.speed.y = 0.0f;
-            }
             game_score();
         }
     }
+
+    for (int i = 0; i < ENEMY_MAX; i++) {
+        if (enemy[i].moveAlg == -1)continue;
+
+        if (hitCheck(&tower, &enemy[i])) {
+            enemy[i].moveAlg = -1;
+            
+
+            tower_hp();
+        }
+    }
+
+
 }

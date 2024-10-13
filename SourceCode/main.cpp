@@ -7,7 +7,7 @@ int nextScene = SCENE_TITLE;
 // WinMain 関数を記述する
 int APIENTRY wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int) {
 	//ゲームライブラリの初期設定
-	GameLib::init(L"最終課題", SCREEN_W, SCREEN_H);
+	GameLib::init(L"ゲーム制作", SCREEN_W, SCREEN_H);
 
 	//ゲームループ
 	while (GameLib::gameLoop())
