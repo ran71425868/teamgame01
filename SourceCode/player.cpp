@@ -71,10 +71,7 @@ void player_update()
 
 
         // 地面とのあたり判定（仮）
-        if (player.pos.y > GROUND_Y) {
-            player.pos.y = GROUND_Y;
-            player.speed.y = 0.0f;
-        }
+        
 
         // プレイヤーの左右のエリアチェック
         if (player.pos.x < 0 + WALL_RIGHT) {
