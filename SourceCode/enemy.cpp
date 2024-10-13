@@ -28,12 +28,12 @@ struct ENEMY_SET {
 }
 enemySet[] = {
     {0,{  300, 0}},
-    {0,{  500, 720}},
+    {0,{  500, 0}},
     {0,{  100, 0}},
-    {1,{  200, 720}},
-    {1,{  1000,0 }},
+    {1,{  200, 0}},
+    {1,{  1000,720 }},
     {1,{  700, 720}},
-    {2,{  800, 0}},
+    {2,{  800, 720}},
     {2,{  400, 720}},
     {-1,{  -1, -1 }},
 };
@@ -106,8 +106,24 @@ void enemy_update()
             rnd = rand() % 1281;
             enemySet[i].pos.x = rnd;
         }
-        enemy_moveX();
+        for (int i = 0; enemySet[i].enemyType >= 0; i++) {
+            enemySet[0].pos.y = 0;
+            enemySet[1].pos.y = 0;
+            enemySet[2].pos.y = 0;
+            enemySet[3].pos.y = 0;
 
+            enemySet[4].pos.y = 720;
+            enemySet[5].pos.y = 720;
+            enemySet[6].pos.y = 720;
+            enemySet[7].pos.y = 720;
+
+
+
+        }
+
+
+
+        enemy_moveX();
         enemy_moveY();
 
         for (int i = 0; i < ENEMY_MAX; i++) {
