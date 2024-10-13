@@ -45,6 +45,8 @@ void judge()
         if (hitCheck(&tower, &enemy[i])) {
             enemy[i].moveAlg = -1;
             
+            
+
 
             tower_hp();
         }

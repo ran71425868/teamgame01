@@ -116,4 +116,8 @@ void tower_hp() {
 		if (enemy[i].moveAlg == -1)
 			hp -= 30;
 	}
+
+	if (hp < 0) {
+		nextScene = SCENE_RESULT;
+	}
 }
