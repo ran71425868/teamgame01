@@ -117,7 +117,7 @@ void tower_hp() {
 			hp -= 30;
 	}
 
-	/*if (hp < 0) {
+	if (hp < 0) {
 		nextScene = SCENE_RESULT;
-	}*/
+	}
 }
