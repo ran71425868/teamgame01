@@ -7,4 +7,6 @@ void tower_deinit();
 void tower_update();
 void tower_render();
 
+void tower_hp();
+
 #endif//SCENE_TITLE_H

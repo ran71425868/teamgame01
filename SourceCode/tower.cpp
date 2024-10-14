@@ -1,6 +1,10 @@
 #include "all.h"
 
 int tower_state;
+int hp;
+
+extern OBJ2D enemy[ENEMY_MAX];
+
 
 //OBJ2D型の変数playerを宣言
 OBJ2D tower;
@@ -14,6 +18,7 @@ void tower_init()
 {
     //tower_stateを0
     tower_state = 0;
+    hp = 100;
 }
 //--------------------------------------
 // 　タワーの終了処理
@@ -75,4 +80,25 @@ void tower_render()
     //タワーの描画
     sprite_render(sprTower, tower.pos.x, tower.pos.y, tower.scale.x, tower.scale.y, tower.texPos.x, tower.texPos.y, tower.texSize.x, tower.texSize.y, tower.pivot.x, tower.pivot.y, ToRadian(0), tower.color.x, tower.color.y);
    /* primitive::rect(600, 235, 80, 10, 0, 0, ToRadian(0), 1, 0, 0.1);*/
+
+    text_out(0, std::to_string(hp), 0, 200, 2, 2);
+}
+
+void tower_hp() {
+    for (int i = 0; i < 3; i++) {
+        if (enemy[i].moveAlg == -1)
+            hp -= 10;
+    }
+    for (int i = 3; i < 6; i++) {
+        if (enemy[i].moveAlg == -1)
+            hp -= 20;
+    }
+    for (int i = 6; i < 8; i++) {
+        if (enemy[i].moveAlg == -1)
+            hp -= 30;
+    }
+
+    if (hp < 0) {
+        nextScene = SCENE_RESULT;
+    }
 }
