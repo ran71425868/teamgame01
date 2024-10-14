@@ -74,4 +74,5 @@ void tower_render()
 {
     //É^ÉèÅ[ÇÃï`âÊ
     sprite_render(sprTower, tower.pos.x, tower.pos.y, tower.scale.x, tower.scale.y, tower.texPos.x, tower.texPos.y, tower.texSize.x, tower.texSize.y, tower.pivot.x, tower.pivot.y, ToRadian(0), tower.color.x, tower.color.y);
+   /* primitive::rect(600, 235, 80, 10, 0, 0, ToRadian(0), 1, 0, 0.1);*/
 }
