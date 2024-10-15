@@ -51,14 +51,14 @@ void tower_update()
         //playerÇÃÉpÉâÉÅÅ[É^ê›íË
        tower = {};
        tower.timer = 0;
-       tower.pos = { 640,420 };
+       tower.pos = { SCREEN_W*0.5f,SCREEN_H*0.5f };
        tower.scale = { 1.0f,1.0f };
        tower.texPos = { 0,0 };
-       tower.texSize = { PLAYER_TEX_W ,PLAYER_TEX_H };
-       tower.pivot = { PLAYER_PIVOT_X,PLAYER_PIVOT_Y };
+       tower.texSize = { TOWER_TEX_W ,TOWER_TEX_H };
+       tower.pivot = { TOWER_PIVOT_X,TOWER_PIVOT_Y };
        tower.color = { 1.0f,1.0f,1.0f,1.0f };
        tower.radius = 20.0f;
-       tower.offset = { 0,-64 };
+       tower.offset = { 0,0 };
 
 
         ++tower_state;
