@@ -1,6 +1,7 @@
 #include "all.h"
 
 int player_state;
+int angle=0;
 
 //OBJ2Då^ÇÃïœêîplayerÇêÈåæ
 OBJ2D player;
@@ -91,20 +92,23 @@ void player_update()
 void player_render()
 {
     //ÉvÉåÉCÉÑÅ[ÇÃï`âÊ
-    sprite_render(sprPlayer, player.pos.x, player.pos.y, player.scale.x, player.scale.y, player.texPos.x, player.texPos.y, player.texSize.x, player.texSize.y, player.pivot.x, player.pivot.y, ToRadian(0), player.color.x, player.color.y);
+    sprite_render(sprPlayer, player.pos.x, player.pos.y, player.scale.x, player.scale.y, player.texPos.x, player.texPos.y, player.texSize.x, player.texSize.y, player.pivot.x, player.pivot.y, 
+        ToRadian(angle), player.color.x, player.color.y);
 }
 
 void player_moveY()
 {
     if (STATE(0) & PAD_DOWN && !(STATE(0) & PAD_UP)) {
         player.speed.y += PLAYER_ACCEL_Y;
-        player.scale.y = -1.0f;
+        player.scale.y = 1.0f;
+        angle = 180;
 
 
     }
     else if (STATE(0) & PAD_UP && !(STATE(0) & PAD_DOWN)) {
         player.speed.y -= PLAYER_ACCEL_Y;
         player.scale.y = 1.0f;
+        angle = 0;
 
     }
     else {
@@ -133,10 +137,13 @@ void player_moveX()
     if (STATE(0) & PAD_LEFT && !(STATE(0) & PAD_RIGHT)) {
         player.speed.x -= PLAYER_ACCEL_X;
         player.scale.x = -1.0f;
+        angle = -90;
+
     }
     else if (STATE(0) & PAD_RIGHT && !(STATE(0) & PAD_LEFT)) {
         player.speed.x += PLAYER_ACCEL_X;
         player.scale.x = 1.0f;
+        angle = 90;
 
     }
     else {
@@ -160,4 +167,13 @@ void player_moveX()
 
     if (player.speed.x <= -PLAYER_SPEED_X_MAX)
         player.speed.x = -PLAYER_SPEED_X_MAX;
+}
+void player_radian() {
+    if (STATE(0) & PAD_TRG2 && !(STATE(0) & PAD_TRG3)) {
+        angle += 15;
+    }
+    else if (STATE(0) & PAD_TRG3 && !(STATE(0) & PAD_TRG2)) {
+        angle -= 15;
+    }
+
 }

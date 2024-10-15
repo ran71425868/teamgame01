@@ -51,5 +51,6 @@ void player_render();
 
 void player_moveX();
 void player_moveY();
+void player_radian();
 
 #endif//PLAYER_H

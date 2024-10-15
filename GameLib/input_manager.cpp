@@ -35,8 +35,8 @@ namespace GameLib
         { PAD_SELECT    , Keyboard::Back },         // VK_BACK
 
         { PAD_TRG1      , Keyboard::Space },        // VK_SPACE
-        { PAD_TRG1      , Keyboard::Up },           // VK_UP
-        { PAD_TRG2      , Keyboard::Down },         // VK_DOWN
+        { PAD_TRG2      , Keyboard::Up },           // VK_UP
+        { PAD_TRG3      , Keyboard::Down },         // VK_DOWN
         { PAD_TRG4      , Keyboard::K },            // 'K'
 
         { PAD_L1        , Keyboard::F1 },           // VK_F1
