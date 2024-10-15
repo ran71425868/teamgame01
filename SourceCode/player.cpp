@@ -98,8 +98,8 @@ void player_moveY()
 {
     if (STATE(0) & PAD_DOWN && !(STATE(0) & PAD_UP)) {
         player.speed.y += PLAYER_ACCEL_Y;
-        player.scale.y = 1.0f;
-        ToRadian(15);
+        player.scale.y = -1.0f;
+
 
     }
     else if (STATE(0) & PAD_UP && !(STATE(0) & PAD_DOWN)) {
