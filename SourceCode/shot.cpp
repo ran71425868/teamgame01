@@ -49,7 +49,7 @@ void shot_update()
         //playerのパラメータ設定
         shot = {};
         shot.timer = 0;
-        shot.pos = { SCREEN_W * 0.5f,SCREEN_H * 0.5f };
+        shot.pos ={ 0,0 };
         shot.scale = { 1.0f,1.0f };
         shot.texPos = { 0,0 };
         shot.texSize = { SHOT_TEX_W ,SHOT_TEX_H };
@@ -57,6 +57,7 @@ void shot_update()
         shot.color = { 1.0f,1.0f,1.0f,1.0f };
         shot.radius = 20.0f;
         shot.offset = { 0,0 };
+     
 
 
         ++shot_state;
@@ -65,10 +66,13 @@ void shot_update()
     case 2:
         //////// 通常時 ////////
 
+        if (STATE(0) & PAD_TRG1)
+        {
+            shot.pos = player.pos;
+        }
 
-
-
-
+        shot_render();
+        shot_move();
         break;
     }
 }
@@ -77,7 +81,11 @@ void shot_render()
 {
     //タワーの描画
     sprite_render(sprShot, shot.pos.x, shot.pos.y, shot.scale.x, shot.scale.y, shot.texPos.x, shot.texPos.y, shot.texSize.x, shot.texSize.y, shot.pivot.x, shot.pivot.y, ToRadian(0), shot.color.x, shot.color.y);
-    
 
-    //text_out(0, std::to_string(hp), 0, 200, 2, 2);
 }
+
+void shot_move()
+{
+    shot.pos.y -= 10;
+
+ }
