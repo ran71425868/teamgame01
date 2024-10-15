@@ -12,6 +12,7 @@
 #include "player.h"
 #include "enemy.h"
 #include "tower.h"
+#include "shot.h"
 #include "judge.h"
 
 #include "scene_game.h"
