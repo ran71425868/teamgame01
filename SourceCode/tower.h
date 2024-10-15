@@ -5,7 +5,7 @@
 #define TOWER_TEX_W                 128.0f
 #define TOWER_TEX_H                 128.0f
 #define TOWER_PIVOT_X               64.0f
-#define TOWER_PIVOT_Y               128.0f
+#define TOWER_PIVOT_Y               64.0f
 
 
 

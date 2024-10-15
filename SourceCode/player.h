@@ -15,7 +15,7 @@
 #define PLAYER_TEX_W                 96.0f
 #define PLAYER_TEX_H                 96.0f
 #define PLAYER_PIVOT_X               48.0f
-#define PLAYER_PIVOT_Y               96.0f
+#define PLAYER_PIVOT_Y               48.0f
 
 
 
