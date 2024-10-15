@@ -27,7 +27,7 @@ void game_deinit() {
 	player_deinit();
 	enemy_deinit();
 	tower_deinit();
-
+	shot_deinit();
 }
 void game_update() {
 	switch (game_state) {
@@ -38,6 +38,7 @@ void game_update() {
 		player_init();
 		enemy_init();
 		tower_init();
+		shot_init();
 
 		game_state++;
 		/*fallthrough*/
@@ -64,6 +65,7 @@ void game_update() {
 		player_update();
 		enemy_update();
 		tower_update();
+	 shot_update();
 
 		judge();
 		break;
@@ -86,6 +88,7 @@ void game_render() {
 	player_render();
 	enemy_render();
 	tower_render();
+	shot_render();
 }
 void game_score() {
 	for (int i = 0; i < 3; i++) {
