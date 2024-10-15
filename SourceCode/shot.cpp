@@ -2,6 +2,7 @@
 
 int shot_state;
 
+
 extern OBJ2D player;
 
 //OBJ2DŒ^‚Ì•Ï”player‚ğéŒ¾

@@ -66,6 +66,7 @@ void player_update()
         //player_moveXÅEYÇåƒÇ‘
         player_moveY();
         player_moveX();
+        player_radian();
 
         // à íuÇ…ë¨ìxÇë´Ç∑
         player.pos += player.speed;
@@ -101,14 +102,12 @@ void player_moveY()
     if (STATE(0) & PAD_DOWN && !(STATE(0) & PAD_UP)) {
         player.speed.y += PLAYER_ACCEL_Y;
         player.scale.y = 1.0f;
-        angle = 180;
 
 
     }
     else if (STATE(0) & PAD_UP && !(STATE(0) & PAD_DOWN)) {
         player.speed.y -= PLAYER_ACCEL_Y;
         player.scale.y = 1.0f;
-        angle = 0;
 
     }
     else {
@@ -137,13 +136,11 @@ void player_moveX()
     if (STATE(0) & PAD_LEFT && !(STATE(0) & PAD_RIGHT)) {
         player.speed.x -= PLAYER_ACCEL_X;
         player.scale.x = -1.0f;
-        angle = -90;
 
     }
     else if (STATE(0) & PAD_RIGHT && !(STATE(0) & PAD_LEFT)) {
         player.speed.x += PLAYER_ACCEL_X;
         player.scale.x = 1.0f;
-        angle = 90;
 
     }
     else {
@@ -170,10 +167,10 @@ void player_moveX()
 }
 void player_radian() {
     if (STATE(0) & PAD_TRG2 && !(STATE(0) & PAD_TRG3)) {
-        angle += 15;
+        angle +=3;
     }
     else if (STATE(0) & PAD_TRG3 && !(STATE(0) & PAD_TRG2)) {
-        angle -= 15;
+        angle -= 3;
     }
 
 }
