@@ -87,7 +87,7 @@ void shot_render()
 
 void shot_move()
 {
-    //shot.pos.y -= 10;
+   // shot.speed.y -= 10;
 
  }
 
