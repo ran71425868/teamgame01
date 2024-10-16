@@ -1,7 +1,7 @@
 #include "all.h"
 
 int shot_state;
-
+extern int angle;
 
 extern OBJ2D player;
 
@@ -51,7 +51,7 @@ void shot_update()
         shot = {};
         shot.timer = 0;
         shot.pos ={ 0,0 };
-        shot.scale = { 1.0f,1.0f };
+        shot.scale = { 0.5f,0.5f };
         shot.texPos = { 0,0 };
         shot.texSize = { SHOT_TEX_W ,SHOT_TEX_H };
         shot.pivot = { SHOT_PIVOT_X,SHOT_PIVOT_Y };
@@ -81,12 +81,21 @@ void shot_update()
 void shot_render()
 {
     //É^ÉèÅ[ÇÃï`âÊ
-    sprite_render(sprShot, shot.pos.x, shot.pos.y, shot.scale.x, shot.scale.y, shot.texPos.x, shot.texPos.y, shot.texSize.x, shot.texSize.y, shot.pivot.x, shot.pivot.y, ToRadian(0), shot.color.x, shot.color.y);
+    sprite_render(sprShot, shot.pos.x, shot.pos.y, shot.scale.x, shot.scale.y, shot.texPos.x, shot.texPos.y, shot.texSize.x, shot.texSize.y, shot.pivot.x, shot.pivot.y, ToRadian(angle), shot.color.x, shot.color.y);
 
 }
 
 void shot_move()
 {
-    shot.pos.y -= 10;
+    //shot.pos.y -= 10;
 
  }
+
+void shot_radian() {
+    if (STATE(0) & PAD_TRG2 && !(STATE(0) & PAD_TRG3)) {
+        angle += 3;
+    }
+    else if (STATE(0) & PAD_TRG3 && !(STATE(0) & PAD_TRG2)) {
+        angle -= 3;
+    }
+}
