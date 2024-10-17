@@ -5,6 +5,7 @@ int game_state;
 int game_timer;
 int score;
 int count;
+int kill;
 
 extern int player_state;
 extern int enemy_state;
@@ -20,6 +21,7 @@ void game_init() {
 	game_state = 0;
 	game_timer = 0;
 	score = 0;
+	kill = 0;
 	
 }
 void game_deinit() {
@@ -83,6 +85,8 @@ void game_render() {
 	text_out(0, "score", 0, 70, 2, 2);
 	text_out(0, std::to_string(score), 0, 100, 2, 2);
 	text_out(4, "Down:S Right: D Left: A", 0, 150, 1, 1);
+	text_out(0, "kill", 0, 200, 2, 2);
+	text_out(0, std::to_string(kill), 0, 250, 2, 2);
 	
 
 	player_render();
@@ -92,15 +96,18 @@ void game_render() {
 }
 void game_score() {
 	for (int i = 0; i < 3; i++) {
-		if (enemy[i].moveAlg == -1)
-			score += 10;
+		if (enemy[i].moveAlg == -1 )
+			score += 100;
+		
 	}
 	for (int i = 3; i < 6; i++) {
 		if (enemy[i].moveAlg == -1)
-			score += 20;
+			score += 200;
 	}
 	for (int i = 6; i < 8; i++) {
 		if (enemy[i].moveAlg == -1)
-			score += 30;
+			score += 150;
 	}
+	kill += 1;
+
 }

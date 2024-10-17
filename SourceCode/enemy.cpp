@@ -4,7 +4,7 @@
 
 int rndX,rndY;
 int enemy_state;
-int speed[8] = { 5,5,5,10,10,10,13,13 };
+int speed[10] = { 2,2.5,3,3.5,4,5,6,7,7.5,8 };
 
 
 struct ENEMY_DATA {
@@ -52,7 +52,7 @@ void enemy_init()
     }
 
     for (int i = 0; enemySet[i].enemyType >= 0; i++) {
-        rndY = rand() % 2;
+       rndY = rand() % 1;
         if (rndY == 1) {
             rndY = rndY * 720;
         }
@@ -162,17 +162,26 @@ void enemy_render()
 }
 void enemy_moveX() {
 
-    for (int i= 0; i < 8; i++) {
+    for (int i= 0; i < 4; i++) {
         if (enemy[i].pos.x > SCREEN_W / 2) enemy[i].pos.x -= speed[0];
         else enemy[i].pos.x += speed[0];
     }
+
+    /*for (int i = 4; i < 6; i++) {
+        if (enemy[i].pos.x > SCREEN_W / 2) enemy[i].pos.x -= speed[0];
+        else enemy[i].pos.x += speed[0];
+    }*/
 }
 void enemy_moveY(){
 
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < 4; i++) {
         if (enemy[i].pos.y > SCREEN_H / 2)  enemy[i].pos.y -= speed[0];
         else enemy[i].pos.y += speed[0];
     }
+    /*for (int i = 4; i < 6; i++) {
+        if (enemy[i].pos.x == SCREEN_W)  enemy[i].pos.y -= speed[0];
+        if(enemy[i].pos.x == 0) enemy[i].pos.y += speed[0];
+    }*/
 }
 
 void moveEnemy0(OBJ2D* obj)
