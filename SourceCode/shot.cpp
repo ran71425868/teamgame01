@@ -87,14 +87,8 @@ void shot_render()
 
 void shot_move()
 {
-    shot.speed.x += cosf(angle) * 10;
-    shot.speed.y += sinf(angle) * 10;
-
-   /* shot.speed.x = shot.pos.x;
-    shot.speed.y = shot.pos.y;
-
-    shot.speed.x *= 0.98f;
-    shot.speed.y *= 0.98f;*/
+    shot.pos.x += cosf(angle) * 10;
+    shot.pos.y += sinf(angle) * 10;
 
 }
 

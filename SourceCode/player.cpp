@@ -56,8 +56,6 @@ void player_update()
         player.radius = 20.0f;
         player.offset = { 0,0 };
 
-        angle = ToRadian(-90);
-
 
 
         ++player_state;
@@ -170,10 +168,10 @@ void player_moveX()
 }
 void player_radian() {
     if (STATE(0) & PAD_TRG2 && !(STATE(0) & PAD_TRG3)) {
-        angle +=ToRadian(3);
+        angle += 3;
     }
     else if (STATE(0) & PAD_TRG3 && !(STATE(0) & PAD_TRG2)) {
-        angle -= ToRadian(3);
+        angle -= 3;
     }
 
 }
