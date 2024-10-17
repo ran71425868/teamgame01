@@ -52,7 +52,7 @@ void enemy_init()
     }
 
     for (int i = 0; enemySet[i].enemyType >= 0; i++) {
-        rndY = rand() % 1;
+        rndY = rand() % 2;
         if (rndY == 1) {
             rndY = rndY * 720;
         }

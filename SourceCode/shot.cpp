@@ -1,7 +1,8 @@
 #include "all.h"
 
 int shot_state;
-extern int angle;
+
+extern float angle;
 
 extern OBJ2D player;
 
@@ -17,7 +18,6 @@ void shot_init()
 {
     //tower_stateを0
     shot_state = 0;
-    
 }
 //--------------------------------------
 // 　タワーの終了処理
@@ -82,20 +82,22 @@ void shot_render()
 {
     //タワーの描画
     sprite_render(sprShot, shot.pos.x, shot.pos.y, shot.scale.x, shot.scale.y, shot.texPos.x, shot.texPos.y, shot.texSize.x, shot.texSize.y, shot.pivot.x, shot.pivot.y, ToRadian(angle), shot.color.x, shot.color.y);
-
+    debug::setString("angle:%f",angle);
 }
 
 void shot_move()
 {
-   // shot.speed.y -= 10;
+    shot.speed.x += cosf(angle) * 10;
+    shot.speed.y += sinf(angle) * 10;
 
- }
+   /* shot.speed.x = shot.pos.x;
+    shot.speed.y = shot.pos.y;
+
+    shot.speed.x *= 0.98f;
+    shot.speed.y *= 0.98f;*/
+
+}
 
 void shot_radian() {
-    if (STATE(0) & PAD_TRG2 && !(STATE(0) & PAD_TRG3)) {
-        angle += 3;
-    }
-    else if (STATE(0) & PAD_TRG3 && !(STATE(0) & PAD_TRG2)) {
-        angle -= 3;
-    }
+    
 }

@@ -1,7 +1,7 @@
 #include "all.h"
 
 int player_state;
-int angle=0;
+float angle=0.0f;
 
 //OBJ2Då^ÇÃïœêîplayerÇêÈåæ
 OBJ2D player;
@@ -55,6 +55,9 @@ void player_update()
         player.color = { 1.0f,1.0f,1.0f,1.0f };
         player.radius = 20.0f;
         player.offset = { 0,0 };
+
+        angle = ToRadian(-90);
+
 
 
         ++player_state;
@@ -135,7 +138,7 @@ void player_moveX()
 
     if (STATE(0) & PAD_LEFT && !(STATE(0) & PAD_RIGHT)) {
         player.speed.x -= PLAYER_ACCEL_X;
-        player.scale.x = -1.0f;
+        player.scale.x = 1.0f;
 
     }
     else if (STATE(0) & PAD_RIGHT && !(STATE(0) & PAD_LEFT)) {
@@ -167,10 +170,10 @@ void player_moveX()
 }
 void player_radian() {
     if (STATE(0) & PAD_TRG2 && !(STATE(0) & PAD_TRG3)) {
-        angle +=3;
+        angle +=ToRadian(3);
     }
     else if (STATE(0) & PAD_TRG3 && !(STATE(0) & PAD_TRG2)) {
-        angle -= 3;
+        angle -= ToRadian(3);
     }
 
 }
