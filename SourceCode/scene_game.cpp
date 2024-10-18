@@ -6,7 +6,8 @@ int game_timer;
 int score;
 int count;
 int kill;
-
+float comboscore;
+int combo;
 extern int player_state;
 extern int enemy_state;
 extern OBJ2D enemy[ENEMY_MAX];
@@ -22,7 +23,8 @@ void game_init() {
 	game_timer = 0;
 	score = 0;
 	kill = 0;
-	
+	combo = 0;
+	comboscore = 1.0f;
 }
 void game_deinit() {
 	music::stop(0);
@@ -87,7 +89,7 @@ void game_render() {
 	text_out(4, "Down:S Right: D Left: A", 0, 150, 1, 1);
 	text_out(0, "kill", 0, 200, 2, 2);
 	text_out(0, std::to_string(kill), 0, 250, 2, 2);
-	
+	text_out(0, std::to_string(combo), 0, 300, 2, 2);
 
 	player_render();
 	enemy_render();
@@ -95,19 +97,29 @@ void game_render() {
 	shot_render();
 }
 void game_score() {
+	if (combo >= 30)
+		comboscore = 2.5f;
+	else if (combo >= 20)
+		comboscore = 2.0f;
+	else if (combo >= 10)
+		comboscore = 1.5f;
+	else
+		comboscore = 1.0f;
+
+
 	for (int i = 0; i < 3; i++) {
 		if (enemy[i].moveAlg == -1 )
-			score += 100;
+			score += 100*comboscore;
 		
 	}
 	for (int i = 3; i < 6; i++) {
 		if (enemy[i].moveAlg == -1)
-			score += 200;
+			score += 200*comboscore;
 	}
 	for (int i = 6; i < 8; i++) {
 		if (enemy[i].moveAlg == -1)
-			score += 150;
+			score += 150*comboscore;
 	}
-	kill += 1;
-
+	kill ++;
+	combo++;
 }
