@@ -30,6 +30,7 @@ struct OBJ2D
     float radius;
     VECTOR2 offset;
 
+    float angle;
 };
 
 //------< ŠÖ” >----------------------------------------------------------------

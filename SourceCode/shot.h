@@ -18,4 +18,5 @@ void shot_move();
 void shot_radian();
 
 
+
 #endif//SCENE_TITLE_H

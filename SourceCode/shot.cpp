@@ -1,7 +1,6 @@
 #include "all.h"
 
 int shot_state;
-float shot_angle;
 
 extern float angle;
 
@@ -19,7 +18,6 @@ void shot_init()
 {
     //tower_stateを0
     shot_state = 0;
-    shot_angle = 0;
 }
 //--------------------------------------
 // 　タワーの終了処理
@@ -69,11 +67,6 @@ void shot_update()
     case 2:
         //////// 通常時 ////////
 
-        if (STATE(0) & PAD_TRG1)
-        {
-            shot.pos = player.pos;
-        }
-
         shot_render();
         shot_move();
         break;
@@ -83,13 +76,19 @@ void shot_update()
 void shot_render()
 {
     //タワーの描画
-    sprite_render(sprShot, shot.pos.x, shot.pos.y, shot.scale.x, shot.scale.y, shot.texPos.x, shot.texPos.y, shot.texSize.x, shot.texSize.y, shot.pivot.x, shot.pivot.y, ToRadian(shot_angle), shot.color.x, shot.color.y);
-    debug::setString("angle:%f",angle);
+    sprite_render(sprShot, shot.pos.x, shot.pos.y, shot.scale.x, shot.scale.y, shot.texPos.x, shot.texPos.y, shot.texSize.x, shot.texSize.y, shot.pivot.x, shot.pivot.y, ToRadian(shot.angle), shot.color.x, shot.color.y);
 }
 
 void shot_move()
 {
-    shot.pos.x += cosf(shot_angle) * 10;
-    shot.pos.y += sinf(shot_angle) * 10;
+    if (STATE(0) & PAD_TRG1)
+    {
+        shot.angle = angle;
+
+        shot.pos = player.pos;
+    }
+    shot.pos.x += cosf(ToRadian( shot.angle - 90)) * 10;
+    shot.pos.y += sinf(ToRadian(shot.angle - 90)) * 10;
 
 }
+

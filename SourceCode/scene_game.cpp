@@ -87,9 +87,8 @@ void game_render() {
 	text_out(0, "score", 0, 70, 2, 2);
 	text_out(0, std::to_string(score), 0, 100, 2, 2);
 	text_out(4, "Down:S Right: D Left: A", 0, 150, 1, 1);
-	text_out(0, "kill", 0, 200, 2, 2);
-	text_out(0, std::to_string(kill), 0, 250, 2, 2);
-	text_out(0, std::to_string(combo), 0, 300, 2, 2);
+	text_out(0, "kill", 0, 250, 2, 2);
+	text_out(0, std::to_string(kill), 0, 300, 2, 2);
 
 	player_render();
 	enemy_render();

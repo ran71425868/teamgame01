@@ -27,7 +27,8 @@
 #define PLAYER_ACCEL_Y      0.3f
 #define PLAYER_DECEL_X      0.4f
 #define PLAYER_DECEL_Y      0.4f
-#define PLAYER_SPEED_X_MAX      8.0f
+#define PLAYER_SPEED_X_MAX      6.0f
+#define PLAYER_SPEED_Y_MAX      6.0f
 
 //•Ç‚Ì”»’è
 #define WALL_LEFT          SCREEN_W - PLAYER_TEX_W * 0.5f

@@ -18,7 +18,7 @@ void tower_init()
 {
     //tower_stateを0
     tower_state = 0;
-    hp = 10000;
+    hp = 100;
 }
 //--------------------------------------
 // 　タワーの終了処理
@@ -78,27 +78,25 @@ void tower_update()
 void tower_render()
 {
     //タワーの描画
+
     sprite_render(sprTower, tower.pos.x, tower.pos.y, tower.scale.x, tower.scale.y, tower.texPos.x, tower.texPos.y, tower.texSize.x, tower.texSize.y, tower.pivot.x, tower.pivot.y, ToRadian(0), tower.color.x, tower.color.y);
     primitive::rect(600, 280, 80, 10, 0, 0, ToRadian(0), 0, 0, 0);
     primitive::rect(600, 280, 80 * hp / 100, 10, 0, 0, ToRadian(0), 1, 0, 0.1);
-    /*primitive::circle(640, 360,40,1,1, ToRadian(0), 1, 0, 0.1);*/
-  
-
     text_out(0, std::to_string(hp), 0, 200, 2, 2);
 }
 
 void tower_hp() {
     for (int i = 0; i < 3; i++) {
         if (enemy[i].moveAlg == -1)
-            hp -= 10;
+            hp -= 5;
     }
     for (int i = 3; i < 6; i++) {
         if (enemy[i].moveAlg == -1)
-            hp -= 20;
+            hp -= 2;
     }
     for (int i = 6; i < 8; i++) {
         if (enemy[i].moveAlg == -1)
-            hp -= 30;
+            hp -= 3;
     }
 
     if (hp <= 0) {

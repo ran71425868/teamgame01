@@ -126,6 +126,11 @@ void player_moveY()
 
         }
     }
+    if (player.speed.y >= PLAYER_SPEED_Y_MAX)
+        player.speed.y = PLAYER_SPEED_Y_MAX;
+                     
+    if (player.speed.y <= -PLAYER_SPEED_Y_MAX)
+        player.speed.y = -PLAYER_SPEED_Y_MAX;
 }
 
 
