@@ -25,17 +25,18 @@ OBJ2D enemy[ENEMY_MAX];
 struct ENEMY_SET {
     int enemyType;
     VECTOR2 pos;
+    int moveType;
 }
 enemySet[] = {
-    {0,{  300, 0}},
-    {0,{  500, 0}},
-    {0,{  100, 0}},
-    {1,{  200, 0}},
-    {1,{  1000,720 }},
-    {1,{  700, 720}},
-    {2,{  800, 720}},
-    {2,{  400, 720}},
-    {-1,{  -1, -1 }},
+    {0,{  300, 0}, 0},
+    {0,{  500, 0}, 0},
+    {0,{  100, 0}, 0},
+    {1,{  200, 0}, 0},
+    {1,{  1000,720 },1 },
+    {1,{  700, 720}, 1},
+    {2,{  800, 720}, 1},
+    {2,{  400, 720}, 1},
+    {-1,{  -1, -1 }, -1},
 };
 //--------------------------------------
 //  エネミーの初期設定
@@ -107,6 +108,9 @@ void enemy_update()
         //討伐後もう一度呼び出す
         for (int i = 0; enemySet[i].enemyType >= 0; i++) {
             OBJ2D* p = searchSet0(enemy, ENEMY_MAX, enemySet[i].enemyType, enemySet[i].pos);
+
+            enemy[i].type = enemySet[i].moveType;
+
             if (!p) break;
         }
 
@@ -162,26 +166,35 @@ void enemy_render()
 }
 void enemy_moveX() {
 
-    for (int i= 0; i < 4; i++) {
-        if (enemy[i].pos.x > SCREEN_W / 2) enemy[i].pos.x -= speed[0];
-        else enemy[i].pos.x += speed[0];
-    }
+    
+    for (int i= 0; i < 8; i++) {
 
-    /*for (int i = 4; i < 6; i++) {
-        if (enemy[i].pos.x > SCREEN_W / 2) enemy[i].pos.x -= speed[0];
-        else enemy[i].pos.x += speed[0];
-    }*/
+        if (enemy[i].type == 0)
+        {
+            if (enemy[i].pos.x > SCREEN_W / 2) enemy[i].pos.x -= speed[0];
+            else enemy[i].pos.x += speed[0];
+        }
+        else if (enemy[i].type == 1)
+        {
+            if (enemy[i].pos.x < SCREEN_W && enemy[i].pos.y <= 0)enemy[i].pos.x += speed[1];
+            else if (enemy[i].pos.x > 0 && enemy[i].pos.y >= 720)enemy[i].pos.x -= speed[1];
+        }
+    }
 }
 void enemy_moveY(){
+    for (int i = 0; i < 8; i++) {
 
-    for (int i = 0; i < 4; i++) {
-        if (enemy[i].pos.y > SCREEN_H / 2)  enemy[i].pos.y -= speed[0];
-        else enemy[i].pos.y += speed[0];
+        if (enemy[i].type == 0)
+        {
+            if (enemy[i].pos.y < SCREEN_H / 2)  enemy[i].pos.y += speed[0];
+            else enemy[i].pos.y -= speed[0];
+        }
+        else if (enemy[i].type == 1)
+        {
+            if (enemy[i].pos.y < SCREEN_H && enemy[i].pos.x >= SCREEN_W)enemy[i].pos.y += speed[1];
+            else if (enemy[i].pos.y > 0 && enemy[i].pos.x <= 0)enemy[i].pos.y -= speed[1];
+        }
     }
-    /*for (int i = 4; i < 6; i++) {
-        if (enemy[i].pos.x == SCREEN_W)  enemy[i].pos.y -= speed[0];
-        if(enemy[i].pos.x == 0) enemy[i].pos.y += speed[0];
-    }*/
 }
 
 void moveEnemy0(OBJ2D* obj)

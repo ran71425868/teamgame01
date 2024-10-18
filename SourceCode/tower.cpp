@@ -57,7 +57,7 @@ void tower_update()
        tower.texSize = { TOWER_TEX_W ,TOWER_TEX_H };
        tower.pivot = { TOWER_PIVOT_X,TOWER_PIVOT_Y };
        tower.color = { 1.0f,1.0f,1.0f,1.0f };
-       tower.radius = 20.0f;
+       tower.radius = 15.0f;
        tower.offset = { 0,0 };
 
 
