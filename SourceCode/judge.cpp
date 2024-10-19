@@ -1,5 +1,8 @@
 #include "all.h"
 
+int stop = 0;
+int stn=5;
+
 extern OBJ2D player;
 extern OBJ2D enemy[ENEMY_MAX];
 extern OBJ2D tower;
@@ -31,9 +34,17 @@ void judge()
         if (enemy[i].moveAlg == -1)continue;
 
         if (hitCheck(&player, &enemy[i])) {
-            
-
-            sound::play(XWB_SYSTEM, XWB_SYSTEM_SHOT);
+            stop++;
+            if (stop == 1) {
+                for (stn=5; stn>0; stn--) {
+                    player.speed.x= 0;
+                    player.speed.y= 0;
+                }
+                stn--;
+                if (stn <= 0) {
+                    stop--;
+                }
+            }
 
         }
     }

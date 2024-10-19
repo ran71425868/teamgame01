@@ -29,6 +29,7 @@ void enemy_render();
 
 void enemy_moveX();
 void enemy_moveY();
+
 void moveEnemy0(OBJ2D* obj);
 void moveEnemy1(OBJ2D* obj);
 void moveEnemy2(OBJ2D* obj);

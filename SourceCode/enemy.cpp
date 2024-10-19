@@ -6,6 +6,8 @@ int rndX,rndY;
 int enemy_state;
 int speed[10] = { 2,2.5,3,3.5,4,5,6,7,7.5,8 };
 
+extern float angle;
+
 
 struct ENEMY_DATA {
     Sprite* spr;
