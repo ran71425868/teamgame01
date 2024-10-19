@@ -31,7 +31,7 @@ void judge()
         if (enemy[i].moveAlg == -1)continue;
 
         if (hitCheck(&player, &enemy[i])) {
-            enemy[i].moveAlg = -1;
+            
 
             sound::play(XWB_SYSTEM, XWB_SYSTEM_SHOT);
 
@@ -55,6 +55,7 @@ void judge()
 
         if (hitCheck(&shot, &enemy[i])) {
             enemy[i].moveAlg = -1;
+            
 
 
 
