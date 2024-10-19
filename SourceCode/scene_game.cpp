@@ -3,15 +3,15 @@
 
 int game_state;
 int game_timer;
+
 int score;
-int count;
 int kill;
 float comboscore;
 int combo;
+
 extern int player_state;
 extern int enemy_state;
 extern OBJ2D enemy[ENEMY_MAX];
-
 
 Sprite* sprBack;
 
@@ -31,7 +31,8 @@ void game_deinit() {
 	player_deinit();
 	enemy_deinit();
 	tower_deinit();
-	shot_deinit();
+	player_shot_deinit();
+	enemy_shot_deinit();
 }
 void game_update() {
 	switch (game_state) {
@@ -42,7 +43,8 @@ void game_update() {
 		player_init();
 		enemy_init();
 		tower_init();
-		shot_init();
+		player_shot_init();
+		enemy_shot_init();
 
 		game_state++;
 		/*fallthrough*/
@@ -69,7 +71,8 @@ void game_update() {
 		player_update();
 		enemy_update();
 		tower_update();
-	 shot_update();
+		player_shot_update();
+		enemy_shot_update();
 
 		judge();
 		break;
@@ -93,7 +96,8 @@ void game_render() {
 	player_render();
 	enemy_render();
 	tower_render();
-	shot_render();
+	player_shot_render();
+	enemy_shot_render();
 }
 void game_score() {
 	if (combo >= 30)

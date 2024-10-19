@@ -169,7 +169,7 @@ void enemy_render()
 void enemy_moveX() {
 
     
-    for (int i= 0; i < 8; i++) {
+    for (int i= 0; i < ENEMY_MAX; i++) {
 
         if (enemy[i].type == 0)
         {
@@ -184,7 +184,7 @@ void enemy_moveX() {
     }
 }
 void enemy_moveY(){
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < ENEMY_MAX; i++) {
 
         if (enemy[i].type == 0)
         {
