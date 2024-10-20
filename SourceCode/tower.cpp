@@ -82,7 +82,8 @@ void tower_render()
     sprite_render(sprTower, tower.pos.x, tower.pos.y, tower.scale.x, tower.scale.y, tower.texPos.x, tower.texPos.y, tower.texSize.x, tower.texSize.y, tower.pivot.x, tower.pivot.y, ToRadian(0), tower.color.x, tower.color.y);
     primitive::rect(600, 280, 80, 10, 0, 0, ToRadian(0), 0, 0, 0);
     primitive::rect(600, 280, 80 * hp / 100, 10, 0, 0, ToRadian(0), 1, 0, 0.1);
-    text_out(0, std::to_string(hp), 0, 200, 2, 2);
+    text_out(0, "towerHP", 0, 250, 2, 2);
+    text_out(0, std::to_string(hp), 0, 300, 2, 2);
 }
 
 void tower_hp() {

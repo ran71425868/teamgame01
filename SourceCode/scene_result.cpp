@@ -3,7 +3,6 @@
 int result_state;
 int result_timer;
 
-Sprite* sprBackground;
 Sprite* sprResult;
 
 extern int score;
@@ -13,7 +12,7 @@ void result_init() {
 }
 
 void result_deinit() {
-	safe_delete(sprBackground);
+
 	music::stop(1);
 }
 
@@ -21,7 +20,6 @@ void result_update() {
 	switch (result_state) {
 	case 0:
 		////////‰Šúİ’è////////
-		sprBackground = sprite_load(L"./Data/Images/haikei.png");
 		sprResult = sprite_load(L"./Data/Images/gameclear.png");
 		audio_init();
 		result_state++;
@@ -49,7 +47,6 @@ void result_update() {
 
 void result_render() {
 	GameLib::clear(0, 0, 2);
-	sprite_render(sprBackground, 0, 0);
 	sprite_render(sprResult, 0, 0);
 
 	text_out(4, "score", 490, 250, 3, 3);

@@ -85,13 +85,15 @@ void game_render() {
 	sprite_render(sprBack, 0, 0);
 
 
-	text_out(0, "timer", 0, 0, 2, 2);
-	text_out(0, std::to_string(game_timer), 0, 30, 2, 2);
-	text_out(0, "score", 0, 70, 2, 2);
+	text_out(4, "Up:W Down:S Right: D Left: A", 0, 0, 1, 1);
+	text_out(4, "angle++: angle--:", 0, 30, 1, 1);
+	text_out(0, "score", 1100, 0, 2, 2);
+	text_out(0, std::to_string(score), 1100, 50, 2, 2);
+	text_out(0, "kill", 0, 80, 2, 2);
 	text_out(0, std::to_string(score), 0, 100, 2, 2);
-	text_out(4, "Down:S Right: D Left: A", 0, 150, 1, 1);
-	text_out(0, "kill", 0, 250, 2, 2);
-	text_out(0, std::to_string(kill), 0, 300, 2, 2);
+	text_out(0, "combo", 0, 150, 2, 2);
+	text_out(0, std::to_string(combo), 0, 200, 2, 2);
+	
 
 	player_render();
 	enemy_render();
