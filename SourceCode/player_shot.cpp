@@ -7,13 +7,13 @@ extern float angle;
 extern OBJ2D player;
 
 int shot_frug;
-//OBJ2D型の変数playerを宣言
+//OBJ2D型の変数player_shotを宣言
 OBJ2D player_shot;
 
 Sprite* sprShot;
 
 //--------------------------------------
-//  タワーの初期設定
+//  player_shotの初期設定
 //--------------------------------------
 void player_shot_init()
 {
@@ -21,7 +21,7 @@ void player_shot_init()
     player_shot_state = 0;
 }
 //--------------------------------------
-// 　タワーの終了処理
+// 　player_shotの終了処理
 //--------------------------------------
 void player_shot_deinit()
 {
@@ -30,7 +30,7 @@ void player_shot_deinit()
 }
 
 //--------------------------------------
-//  タワーの更新処理
+//  player_shotの更新処理
 //--------------------------------------
 void player_shot_update()
 {
@@ -39,7 +39,7 @@ void player_shot_update()
     case 0:
         //////// 初期設定 ////////
 
-        //プレイヤーの画像を読み込み
+        //player_shotの画像を読み込み
         sprShot = sprite_load(L"./Data/Images/shot.png");
 
         ++player_shot_state;
@@ -48,7 +48,7 @@ void player_shot_update()
     case 1:
         //////// パラメータの設定 ////////
 
-        //playerのパラメータ設定
+        //player_shotのパラメータ設定
         player_shot = {};
         player_shot.timer = 0;
         player_shot.pos ={ 0,0 };

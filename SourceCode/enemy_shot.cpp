@@ -67,7 +67,7 @@ void enemy_shot_update()
         ++enemy_shot_state;
         /*fallthrough*/
     }
-       
+
 
     case 1:
         //////// ƒpƒ‰ƒ[ƒ^‚Ìİ’è ////////
@@ -76,7 +76,7 @@ void enemy_shot_update()
             enemy_shot[i] = {};
             enemy_shot[i].moveAlg = -1;
         }
-       
+
         ++enemy_shot_state;
         /*fallthrough*/
 
@@ -85,7 +85,17 @@ void enemy_shot_update()
 
         enemy_shot_render();
         enemy_shot_move();
-        break;
+
+        for (int i = 0; i < ENEMY_SHOT_MAX; i++) {
+            if (enemy_shot[i].moveAlg == -1)continue;
+
+            switch (enemy_shot[i].moveAlg) {
+            case 0:
+                moveEnemyshot0(&enemy_shot[i]);
+                break;
+            }
+            break;
+        }
     }
 }
 
@@ -93,7 +103,7 @@ void enemy_shot_render()
 {
     for (int i = 0; i < ENEMY_SHOT_MAX; ++i)
     {
-        if (enemy[i].moveAlg == -1)continue;
+        if (enemy_shot[i].moveAlg == -1)continue;
 
         //’e‚Ì•`‰æ
         sprite_render(enemy_shot[i].spr, enemy_shot[i].pos.x, enemy_shot[i].pos.y, enemy_shot[i].scale.x, enemy_shot[i].scale.y, enemy_shot[i].texPos.x, enemy_shot[i].texPos.y, enemy_shot[i].texSize.x, enemy_shot[i].texSize.y, enemy_shot[i].pivot.x, enemy_shot[i].pivot.y, ToRadian(enemy_shot[i].angle), enemy_shot[i].color.x, enemy_shot[i].color.y);
@@ -108,14 +118,40 @@ void enemy_shot_move()
             if (enemy[i].type == 1) {
                 enemy_shot[i].pos = enemy[i].pos;
                 enemy_shot[i].angle = enemy_shot_angle;
-                /*if (enemy[i].pos.x < SCREEN_W && enemy[i].pos.y <= 0)enemy_shot_angle=90.0f;
+                if (enemy[i].pos.x < SCREEN_W && enemy[i].pos.y <= 0)enemy_shot_angle=90.0f;
                 else if (enemy[i].pos.x > 0 && enemy[i].pos.y >= 720)enemy_shot_angle=-90.0f;
                 if (enemy[i].pos.y < SCREEN_H && enemy[i].pos.x >= SCREEN_W)enemy_shot_angle=180.0f;
-                else if (enemy[i].pos.y > 0 && enemy[i].pos.x <= 0)enemy_shot_angle=0.0f;*/
+                else if (enemy[i].pos.y > 0 && enemy[i].pos.x <= 0)enemy_shot_angle=0.0f;
             }
-            enemy_shot[i].pos.x += cosf(ToRadian(enemy_shot[i].angle - 90)) * 10;
-            enemy_shot[i].pos.y += sinf(ToRadian(enemy_shot[i].angle - 90)) * 10;
+           
 
         }
+        for (int i = 0; i < ENEMY_SHOT_MAX; i++) {
+        enemy_shot[i].pos.x += cosf(ToRadian(enemy_shot[i].angle - 90)) * 10;
+        enemy_shot[i].pos.y += sinf(ToRadian(enemy_shot[i].angle - 90)) * 10;
+
+        }
+    }
+}
+
+void moveEnemyshot0(OBJ2D* obj)
+{
+    switch (obj->state) {
+    case 0:
+
+        obj->scale = { 1.0f, 1.0f };
+        obj->color = { 1, 1, 1, 1 };
+        obj->spr = enemyShotdata[0].spr;
+        obj->texPos = enemyShotdata[0].texPos;
+        obj->texSize = enemyShotdata[0].texSize;
+        obj->pivot = enemyShotdata[0].pivot;
+        obj->radius = enemyShotdata[0].radius;
+
+        ++obj->state;
+        /*fallthrough*/
+
+    case 1:
+        ////////’Êí////////
+        break;
     }
 }
