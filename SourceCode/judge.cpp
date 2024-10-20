@@ -57,11 +57,8 @@ void judge()
 
         if (hitCheck(&player_shot, &enemy[i])) {
             enemy[i].moveAlg = -1;
-            
-
-
-
-
+            player_shot.pos.x = 0;
+            player_shot.pos.y = 0;
             game_score();
         }
     }
