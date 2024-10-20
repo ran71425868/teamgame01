@@ -7,9 +7,13 @@ extern float angle;
 extern OBJ2D player;
 
 int shot_frug;
+int shot_frug2;
+
+
+
 //OBJ2Då^ÇÃïœêîplayer_shotÇêÈåæ
 OBJ2D player_shot;
-
+OBJ2D player_shot2;
 Sprite* sprShot;
 
 //--------------------------------------
@@ -19,6 +23,8 @@ void player_shot_init()
 {
     //player_shot_stateÇ0
     player_shot_state = 0;
+    int shot_frug=1;
+    int shot_frug2=1;
 }
 //--------------------------------------
 // Å@player_shotÇÃèIóπèàóù
@@ -60,7 +66,16 @@ void player_shot_update()
         player_shot.radius = 20.0f;
         player_shot.offset = { 0,0 };
      
-
+        player_shot2 = {};
+        player_shot2.timer = 0;
+        player_shot2.pos = { 0,0 };
+        player_shot2.scale = { 0.5f,0.5f };
+        player_shot2.texPos = { 0,0 };
+        player_shot2.texSize = { PLAYER_SHOT_TEX_W ,PLAYER_SHOT_TEX_H };
+        player_shot2.pivot = { PLAYER_SHOT_PIVOT_X,PLAYER_SHOT_PIVOT_Y };
+        player_shot2.color = { 1.0f,1.0f,1.0f,1.0f };
+        player_shot2.radius = 20.0f;
+        player_shot2.offset = { 0,0 };
 
         ++player_shot_state;
         /*fallthrough*/
@@ -77,6 +92,8 @@ void player_shot_update()
 void player_shot_render()
 {
     //íeÇÃï`âÊ
+    sprite_render(sprShot, player_shot2.pos.x, player_shot2.pos.y, player_shot2.scale.x, player_shot2.scale.y, player_shot2.texPos.x, player_shot2.texPos.y, player_shot2.texSize.x, player_shot2.texSize.y, player_shot2.pivot.x, player_shot2.pivot.y, ToRadian(player_shot2.angle), player_shot2.color.x, player_shot2.color.y);
+
     sprite_render(sprShot, player_shot.pos.x, player_shot.pos.y, player_shot.scale.x, player_shot.scale.y, player_shot.texPos.x, player_shot.texPos.y, player_shot.texSize.x, player_shot.texSize.y, player_shot.pivot.x, player_shot.pivot.y, ToRadian(player_shot.angle), player_shot.color.x, player_shot.color.y);
 }
 
@@ -93,5 +110,22 @@ void player_shot_move()
     player_shot.pos.y += sinf(ToRadian(player_shot.angle - 90)) * 10;
     if (player_shot.pos.x<0 || player_shot.pos.x>SCREEN_W || player_shot.pos.y<0 || player_shot.pos.y>SCREEN_H)
         shot_frug = 1;
+
+
+
+    if (STATE(0) & PAD_TRG1 && shot_frug2 == 1&&shot_frug==0)
+    {
+        if(player.pos.x- player_shot.pos.x>=640|| player.pos.x - player_shot.pos.x <= -640 || player.pos.y - player_shot.pos.y >= 360|| player.pos.y - player_shot.pos.y <= -360)
+        {
+            player_shot2.angle = angle;
+
+            player_shot2.pos = player.pos;
+            shot_frug2 = 0;
+        }
+    }
+    player_shot2.pos.x += cosf(ToRadian(player_shot2.angle - 90)) * 10;
+    player_shot2.pos.y += sinf(ToRadian(player_shot2.angle - 90)) * 10;
+    if (player_shot2.pos.x<0 || player_shot2.pos.x>SCREEN_W || player_shot2.pos.y<0 || player_shot2.pos.y>SCREEN_H)
+        shot_frug2 = 1;
 }
 
