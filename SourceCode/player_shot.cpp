@@ -6,6 +6,7 @@ extern float angle;
 
 extern OBJ2D player;
 
+int shot_frug;
 //OBJ2Då^ÇÃïœêîplayerÇêÈåæ
 OBJ2D player_shot;
 
@@ -81,14 +82,16 @@ void player_shot_render()
 
 void player_shot_move()
 {
-    if (STATE(0) & PAD_TRG1)
+    if (STATE(0) & PAD_TRG1&& shot_frug==1)
     {
         player_shot.angle = angle;
 
         player_shot.pos = player.pos;
+        shot_frug = 0;
     }
     player_shot.pos.x += cosf(ToRadian(player_shot.angle - 90)) * 10;
     player_shot.pos.y += sinf(ToRadian(player_shot.angle - 90)) * 10;
-
+    if (player_shot.pos.x<0 || player_shot.pos.x>SCREEN_W || player_shot.pos.y<0 || player_shot.pos.y>SCREEN_H)
+        shot_frug = 1;
 }
 
