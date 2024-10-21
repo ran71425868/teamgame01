@@ -101,7 +101,7 @@ void player_shot_render()
 
 void player_shot_move()
 {
-    if (STATE(0) & PAD_TRG1&& shot_frug==1)
+    if (STATE(0) & PAD_TRG1&& shot_frug==1&&timer>50)
     {
         player_shot.angle = angle;
 
