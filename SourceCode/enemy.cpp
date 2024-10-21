@@ -199,6 +199,22 @@ void enemy_moveY(){
     }
 }
 
+void enemy_bullet()
+{
+    VECTOR2 vec;
+    vec.x = tower.pos.x - enemy[i].pos.x;
+    vec.y = tower.pos.y - enemy[i].pos.y;
+
+    float diagonal = sqrtf(vec.x * vec.x + vec.y * vec.y);
+
+    vec.x = vec.x / diagonal;
+    vec.y = vec.y / diagonal;
+
+    float speed = 10.0f;
+    v.pos.x = vec.x * speed;
+    v.pos.y = vec.y * speed;
+}
+
 void moveEnemy0(OBJ2D* obj)
 {
 

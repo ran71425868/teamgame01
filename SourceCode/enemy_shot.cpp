@@ -86,19 +86,41 @@ void enemy_shot_render()
   
 }
 
+#if false
+/// <summary>
+/// ÀÛ‚Í SearchSet ‚Å‹ó‚¢‚Ä‚é’e‚ğ’T‚·
+/// ‚»‚Ì‚ ‚Æ‚É‚»‚Ì’e‚É‰Šúİ’è‚Æ‚µ‚ÄˆÈ‰º‚Ìİ’è‚ğs‚¤
+/// </summary>
+/// <param name="v">SearchSet ‚Å‚³‚ª‚µ‚¾‚µ‚½’e</param>
+void enemy_launch_shot(OBJ2D* v)
+{
+    VECTOR2 vec;
+    vec.x = tower.pos.x - enemy[i].pos.x;
+    vec.y = tower.pos.y - enemy[i].pos.y;
+
+    float diagonal = sqrtf(vec.x * vec.x + vec.y * vec.y);
+
+    vec.x = vec.x / diagonal;
+    vec.y = vec.y / diagonal;
+
+    float speed = 10.0f;
+    v->pos.x = vec.x * speed;
+    v->pos.y = vec.y * speed;
+}
+#endif
+
 void enemy_shot_move()
 {
     if (game_timer>0)
     {
         for (int i = 0; i < ENEMY_MAX; i++) {
-            if (enemy[i].type == 1&&enemy_shot_flug==1) {
-                vec.pos.x = tower.pos.x - enemy->pos.x;
-                vec.pos.x = tower.pos.x - enemy->pos.x;
+            if (enemy[i].type == 1) {
 
-                diagonal = sqrtf(vec.pos.x * vec.pos.x + vec.pos.y * vec.pos.y);
 
-                v.pos.x = vec.pos.x / diagonal;
-                v.pos.y = vec.pos.y / diagonal;
+
+        enemy_shot.pos.x += v.pos.x;
+        enemy_shot.pos.y += v.pos.y;
+
                 enemy_shot_flug--;
                /* enemy_shot.pos = enemy[i].pos;
                 enemy_shot.angle = enemy_shot_angle;
@@ -111,7 +133,9 @@ void enemy_shot_move()
 
         }
        
-        enemy_shot.pos.x += cosf(ToRadian(enemy_shot.angle - 90)) * 10;
-        enemy_shot.pos.y += sinf(ToRadian(enemy_shot.angle - 90)) * 10;
+        //enemy_shot.pos.x += cosf(ToRadian(enemy_shot.angle - 90)) * 10;
+        //enemy_shot.pos.y += sinf(ToRadian(enemy_shot.angle - 90)) * 10;
+
+
     }
 }

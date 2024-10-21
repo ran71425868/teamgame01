@@ -14,6 +14,7 @@ void enemy_shot_deinit();
 void enemy_shot_update();
 void enemy_shot_render();
 
+//void enemy_launch_shot();
 void enemy_shot_move();
 void moveEnemyshot0(OBJ2D* obj);
 
