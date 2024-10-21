@@ -9,7 +9,7 @@ extern OBJ2D player;
 int shot_frug;
 int shot_frug2;
 
-
+int timer;
 
 //OBJ2DŒ^‚Ì•Ï”player_shot‚ðéŒ¾
 OBJ2D player_shot;
@@ -25,6 +25,7 @@ void player_shot_init()
     player_shot_state = 0;
     int shot_frug=1;
     int shot_frug2=1;
+    timer = 0;
 }
 //--------------------------------------
 // @player_shot‚ÌI—¹ˆ—
@@ -84,6 +85,7 @@ void player_shot_update()
         //////// ’ÊíŽž ////////
 
         player_shot_move();
+        timer++;
         break;
     }
 }
@@ -98,12 +100,13 @@ void player_shot_render()
 
 void player_shot_move()
 {
-    if (STATE(0) & PAD_TRG1&& shot_frug==1)
+    if (STATE(0) & PAD_TRG1&& shot_frug==1&&timer>50)
     {
         player_shot.angle = angle;
 
         player_shot.pos = player.pos;
         shot_frug = 0;
+        timer = 0;
     }
     player_shot.pos.x += cosf(ToRadian(player_shot.angle - 90)) * 10;
     player_shot.pos.y += sinf(ToRadian(player_shot.angle - 90)) * 10;
@@ -114,7 +117,7 @@ void player_shot_move()
 
     if (STATE(0) & PAD_TRG1 && shot_frug2 == 1&&shot_frug==0)
     {
-        if(player.pos.x- player_shot.pos.x>=640|| player.pos.x - player_shot.pos.x <= -640 || player.pos.y - player_shot.pos.y >= 360|| player.pos.y - player_shot.pos.y <= -360)
+        if(timer>25)
         {
             player_shot2.angle = angle;
 

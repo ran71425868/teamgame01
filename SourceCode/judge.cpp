@@ -4,6 +4,7 @@ extern OBJ2D player;
 extern OBJ2D enemy[ENEMY_MAX];
 extern OBJ2D tower;
 extern OBJ2D player_shot;
+extern OBJ2D player_shot2;
 extern int combo;
 //“–‚½‚è”»’è
 bool hitCheckCircle(VECTOR2 pos1, float r1, VECTOR2 pos2, float r2) {
@@ -60,10 +61,17 @@ void judge()
 
         if (hitCheck(&player_shot, &enemy[i])) {
             enemy[i].moveAlg = -1;
-            player_shot.pos.x = 0;
-            player_shot.pos.y = 0;
+          
             game_score();
         }
     }
+    for (int i = 0; i < ENEMY_MAX; i++) {
+        if (enemy[i].moveAlg == -1)continue;
 
+        if (hitCheck(&player_shot2, &enemy[i])) {
+            enemy[i].moveAlg = -1;
+
+            game_score();
+        }
+    }
 }
