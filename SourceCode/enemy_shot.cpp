@@ -1,32 +1,18 @@
 #include "all.h"
 
 int enemy_shot_state;
-float enemy_shot_angle;
+extern int game_timer;
+float diagonal;
+int enemy_shot_flug;
 
 extern OBJ2D enemy[ENEMY_MAX];
+extern OBJ2D tower;
 
-struct ENEMY_SHOT_DATA {
-    Sprite* spr;
-    const wchar_t* filePath;
-    VECTOR2          texPos;
-    VECTOR2          texSize;
-    VECTOR2          pivot;
-    float            radius;
-}
-enemyShotdata[] = {
-       {NULL,   L"./Data/Images/shot.png", { 0,0 }, { 64, 64 }, { 32, 32 }, {20}},
-};
-OBJ2D enemy_shot[ENEMY_SHOT_MAX];
+OBJ2D enemy_shot;
+OBJ2D vec;
+OBJ2D v;
+Sprite* sprEnemyshot;
 
-struct ENEMY_SHOT_SET {
-    int enemyshotType;
-    VECTOR2 pos;
-}
-enemySet[] = {
-    {0,{  0, 0}},
-    {0,{  0, 0}},
-    {-1,{  -1, -1 }},
-};
 
 //--------------------------------------
 //  enemy_shotの初期設定
@@ -35,6 +21,8 @@ void enemy_shot_init()
 {
 	//enemy_shot_stateを0
 	enemy_shot_state = 0;
+    diagonal = 0;
+    enemy_shot_flug = 1;
 }
 //--------------------------------------
 // 　enemy_shotの終了処理
@@ -42,10 +30,7 @@ void enemy_shot_init()
 void enemy_shot_deinit()
 {
 	//enemyshotを破棄
-    int dataNum = ARRAYSIZE(enemyShotdata);
-    for (int i = 0; i < dataNum; i++) {
-        safe_delete(enemyShotdata[i].spr);
-    }
+    safe_delete(sprEnemyshot);
 }
 //--------------------------------------
 //  enemy_shotの更新処理
@@ -59,10 +44,7 @@ void enemy_shot_update()
         //////// 初期設定 ////////
 
        //enemy_shotの画像を読み込み
-        int dataNum = sizeof(enemyShotdata) / sizeof(ENEMY_SHOT_DATA);
-        for (int i = 0; i < dataNum; i++) {
-            enemyShotdata[i].spr = sprite_load(enemyShotdata[i].filePath);
-        }
+        sprEnemyshot = sprite_load(L"./Data/Images/shot.png");
 
         ++enemy_shot_state;
         /*fallthrough*/
@@ -72,10 +54,16 @@ void enemy_shot_update()
     case 1:
         //////// パラメータの設定 ////////
 
-        for (int i = 0; i < ENEMY_SHOT_MAX; i++) {
-            enemy_shot[i] = {};
-            enemy_shot[i].moveAlg = -1;
-        }
+        enemy_shot = {};
+        enemy_shot.timer = 0;
+        enemy_shot.pos = { 0,0 };
+        enemy_shot.scale = { 0.5f,0.5f };
+        enemy_shot.texPos = { 0,0 };
+        enemy_shot.texSize = { ENEMY_SHOT_TEX_W ,ENEMY_SHOT_TEX_H };
+        enemy_shot.pivot = { ENEMY_SHOT_PIVOT_X,ENEMY_SHOT_PIVOT_Y };
+        enemy_shot.color = { 1.0f,1.0f,1.0f,1.0f };
+        enemy_shot.radius = 20.0f;
+        enemy_shot.offset = { 0,0 };
 
         ++enemy_shot_state;
         /*fallthrough*/
@@ -83,75 +71,47 @@ void enemy_shot_update()
     case 2:
         //////// 通常時 ////////
 
-        enemy_shot_render();
+        enemy_shot_flug++;
         enemy_shot_move();
-
-        for (int i = 0; i < ENEMY_SHOT_MAX; i++) {
-            if (enemy_shot[i].moveAlg == -1)continue;
-
-            switch (enemy_shot[i].moveAlg) {
-            case 0:
-                moveEnemyshot0(&enemy_shot[i]);
-                break;
-            }
-            break;
-        }
+        break;
+      
     }
 }
 
 void enemy_shot_render()
 {
-    for (int i = 0; i < ENEMY_SHOT_MAX; ++i)
-    {
-        if (enemy_shot[i].moveAlg == -1)continue;
-
+   
         //弾の描画
-        sprite_render(enemy_shot[i].spr, enemy_shot[i].pos.x, enemy_shot[i].pos.y, enemy_shot[i].scale.x, enemy_shot[i].scale.y, enemy_shot[i].texPos.x, enemy_shot[i].texPos.y, enemy_shot[i].texSize.x, enemy_shot[i].texSize.y, enemy_shot[i].pivot.x, enemy_shot[i].pivot.y, ToRadian(enemy_shot[i].angle), enemy_shot[i].color.x, enemy_shot[i].color.y);
-    }
+        sprite_render(enemy_shot.spr, enemy_shot.pos.x, enemy_shot.pos.y, enemy_shot.scale.x, enemy_shot.scale.y, enemy_shot.texPos.x, enemy_shot.texPos.y, enemy_shot.texSize.x, enemy_shot.texSize.y, enemy_shot.pivot.x, enemy_shot.pivot.y, ToRadian(enemy_shot.angle), enemy_shot.color.x, enemy_shot.color.y);
+  
 }
 
 void enemy_shot_move()
 {
-    if (STATE(0) & PAD_TRG1)
+    if (game_timer>0)
     {
         for (int i = 0; i < ENEMY_MAX; i++) {
-            if (enemy[i].type == 1) {
-                enemy_shot[i].pos = enemy[i].pos;
-                enemy_shot[i].angle = enemy_shot_angle;
+            if (enemy[i].type == 1&&enemy_shot_flug==1) {
+                vec.pos.x = tower.pos.x - enemy->pos.x;
+                vec.pos.x = tower.pos.x - enemy->pos.x;
+
+                diagonal = sqrtf(vec.pos.x * vec.pos.x + vec.pos.y * vec.pos.y);
+
+                v.pos.x = vec.pos.x / diagonal;
+                v.pos.y = vec.pos.y / diagonal;
+                enemy_shot_flug--;
+               /* enemy_shot.pos = enemy[i].pos;
+                enemy_shot.angle = enemy_shot_angle;
                 if (enemy[i].pos.x < SCREEN_W && enemy[i].pos.y <= 0)enemy_shot_angle=90.0f;
                 else if (enemy[i].pos.x > 0 && enemy[i].pos.y >= 720)enemy_shot_angle=-90.0f;
                 if (enemy[i].pos.y < SCREEN_H && enemy[i].pos.x >= SCREEN_W)enemy_shot_angle=180.0f;
-                else if (enemy[i].pos.y > 0 && enemy[i].pos.x <= 0)enemy_shot_angle=0.0f;
+                else if (enemy[i].pos.y > 0 && enemy[i].pos.x <= 0)enemy_shot_angle=0.0f;*/
             }
            
 
         }
-        for (int i = 0; i < ENEMY_SHOT_MAX; i++) {
-        enemy_shot[i].pos.x += cosf(ToRadian(enemy_shot[i].angle - 90)) * 10;
-        enemy_shot[i].pos.y += sinf(ToRadian(enemy_shot[i].angle - 90)) * 10;
-
-        }
-    }
-}
-
-void moveEnemyshot0(OBJ2D* obj)
-{
-    switch (obj->state) {
-    case 0:
-
-        obj->scale = { 1.0f, 1.0f };
-        obj->color = { 1, 1, 1, 1 };
-        obj->spr = enemyShotdata[0].spr;
-        obj->texPos = enemyShotdata[0].texPos;
-        obj->texSize = enemyShotdata[0].texSize;
-        obj->pivot = enemyShotdata[0].pivot;
-        obj->radius = enemyShotdata[0].radius;
-
-        ++obj->state;
-        /*fallthrough*/
-
-    case 1:
-        ////////通常時////////
-        break;
+       
+        enemy_shot.pos.x += cosf(ToRadian(enemy_shot.angle - 90)) * 10;
+        enemy_shot.pos.y += sinf(ToRadian(enemy_shot.angle - 90)) * 10;
     }
 }
