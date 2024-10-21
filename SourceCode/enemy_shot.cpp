@@ -1,11 +1,16 @@
 #include "all.h"
 
 int enemy_shot_state;
-float enemy_shot_angle;
+extern int game_timer;
+float diagonal;
+int enemy_shot_flug;
 
 extern OBJ2D enemy[ENEMY_MAX];
+extern OBJ2D tower;
 
 OBJ2D enemy_shot;
+OBJ2D vec;
+OBJ2D v;
 Sprite* sprEnemyshot;
 
 
@@ -16,6 +21,8 @@ void enemy_shot_init()
 {
 	//enemy_shot_state‚ð0
 	enemy_shot_state = 0;
+    diagonal = 0;
+    enemy_shot_flug = 1;
 }
 //--------------------------------------
 // @enemy_shot‚ÌI—¹ˆ—
@@ -64,7 +71,7 @@ void enemy_shot_update()
     case 2:
         //////// ’ÊíŽž ////////
 
-      
+        enemy_shot_flug++;
         enemy_shot_move();
         break;
       
@@ -81,16 +88,24 @@ void enemy_shot_render()
 
 void enemy_shot_move()
 {
-    if (STATE(0) & PAD_TRG1)
+    if (game_timer>0)
     {
         for (int i = 0; i < ENEMY_MAX; i++) {
-            if (enemy[i].type == 1) {
-                enemy_shot.pos = enemy[i].pos;
+            if (enemy[i].type == 1&&enemy_shot_flug==1) {
+                vec.pos.x = tower.pos.x - enemy->pos.x;
+                vec.pos.x = tower.pos.x - enemy->pos.x;
+
+                diagonal = sqrtf(vec.pos.x * vec.pos.x + vec.pos.y * vec.pos.y);
+
+                v.pos.x = vec.pos.x / diagonal;
+                v.pos.y = vec.pos.y / diagonal;
+                enemy_shot_flug--;
+               /* enemy_shot.pos = enemy[i].pos;
                 enemy_shot.angle = enemy_shot_angle;
                 if (enemy[i].pos.x < SCREEN_W && enemy[i].pos.y <= 0)enemy_shot_angle=90.0f;
                 else if (enemy[i].pos.x > 0 && enemy[i].pos.y >= 720)enemy_shot_angle=-90.0f;
                 if (enemy[i].pos.y < SCREEN_H && enemy[i].pos.x >= SCREEN_W)enemy_shot_angle=180.0f;
-                else if (enemy[i].pos.y > 0 && enemy[i].pos.x <= 0)enemy_shot_angle=0.0f;
+                else if (enemy[i].pos.y > 0 && enemy[i].pos.x <= 0)enemy_shot_angle=0.0f;*/
             }
            
 

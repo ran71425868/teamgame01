@@ -86,7 +86,7 @@ void game_render() {
 	text_out(0, "score", 1100, 0, 2, 2);
 	text_out(0, std::to_string(score), 1100, 50, 2, 2);
 	text_out(0, "kill", 0, 80, 2, 2);
-	text_out(0, std::to_string(score), 0, 100, 2, 2);
+	text_out(0, std::to_string(kill), 0, 110, 2, 2);
 	text_out(0, "combo", 0, 150, 2, 2);
 	text_out(0, std::to_string(combo), 0, 200, 2, 2);
 	
