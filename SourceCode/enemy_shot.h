@@ -1,8 +1,6 @@
 #ifndef ENEMY_SHOT_H 
 #define ENEMY_SHOT_H 
 
-#define ENEMY_SHOT_MAX   (2)
-
 //enemy_shot‚Ì‰æ‘œ’è‹`
 #define ENEMY_SHOT_TEX_W                 64.0f
 #define ENEMY_SHOT_TEX_H                 64.0f

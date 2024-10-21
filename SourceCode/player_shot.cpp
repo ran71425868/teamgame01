@@ -31,7 +31,7 @@ void player_shot_init()
 //--------------------------------------
 void player_shot_deinit()
 {
-    //sprTower‚ğ”jŠü
+    //sprShot‚ğ”jŠü
     safe_delete(sprShot);
 }
 
@@ -83,7 +83,6 @@ void player_shot_update()
     case 2:
         //////// ’Êí ////////
 
-       player_shot_render();
         player_shot_move();
         break;
     }
