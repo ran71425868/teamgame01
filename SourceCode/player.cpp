@@ -47,7 +47,7 @@ void player_update()
         //player‚Ìƒpƒ‰ƒ[ƒ^İ’è
         player = {};
         player.timer = 0;
-        player.pos = { SCREEN_W * 0.5f,SCREEN_H * 0.5f };
+        player.pos = { SCREEN_W * 0.5f,SCREEN_H * 0.5f+100 };
         player.scale = { 1.0f,1.0f };
         player.texPos = { 0,0 };
         player.texSize = { PLAYER_TEX_W ,PLAYER_TEX_H };

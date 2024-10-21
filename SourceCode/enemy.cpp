@@ -178,8 +178,8 @@ void enemy_moveX() {
         }
         else if (enemy[i].type == 1)
         {
-            if (enemy[i].pos.x < SCREEN_W && enemy[i].pos.y <= 0)enemy[i].pos.x += speed[1];
-            else if (enemy[i].pos.x > 0 && enemy[i].pos.y >= 720)enemy[i].pos.x -= speed[1];
+            if (enemy[i].pos.x < SCREEN_W-32 && enemy[i].pos.y <= 0)enemy[i].pos.x += speed[1];
+            else if (enemy[i].pos.x > 32 && enemy[i].pos.y >= 650)enemy[i].pos.x -= speed[1];
         }
     }
 }
@@ -193,8 +193,8 @@ void enemy_moveY(){
         }
         else if (enemy[i].type == 1)
         {
-            if (enemy[i].pos.y < SCREEN_H && enemy[i].pos.x >= SCREEN_W)enemy[i].pos.y += speed[1];
-            else if (enemy[i].pos.y > 0 && enemy[i].pos.x <= 0)enemy[i].pos.y -= speed[1];
+            if (enemy[i].pos.y < SCREEN_H-70 && enemy[i].pos.x >= SCREEN_W-32)enemy[i].pos.y += speed[1];
+            else if (enemy[i].pos.y > 0 && enemy[i].pos.x <= 32)enemy[i].pos.y -= speed[1];
         }
     }
 }
