@@ -63,10 +63,6 @@ void game_update() {
 			nextScene = SCENE_TITLE;
 			break;
 		}
-		if (game_timer > 3000) {
-			nextScene = SCENE_RESULT;
-			break;
-		}
 
 		player_update();
 		enemy_update();
