@@ -4,9 +4,10 @@
 
 int rndX,rndY;
 int enemy_state;
-int speed[8] = { 1.5,2,2.5,3,3.5,5,5.5,7};
+float speed[8] = { 1,1.25,1.5,2,2.5,3,5,7};
 
 extern float angle;
+extern int kill;
 
 
 struct ENEMY_DATA {
@@ -173,8 +174,45 @@ void enemy_moveX() {
 
         if (enemy[i].type == 0)
         {
-            if (enemy[i].pos.x > SCREEN_W / 2) enemy[i].pos.x -= speed[0];
-            else enemy[i].pos.x += speed[0];
+            if (enemy[i].pos.x > SCREEN_W / 2) {
+                if (kill > 100)
+                    enemy[i].pos.x -= speed[7];
+                else if (kill > 80)
+                    enemy[i].pos.x -= speed[6];
+                else if (kill > 60)
+                    enemy[i].pos.x -= speed[5];
+                else if (kill > 40)
+                    enemy[i].pos.x -= speed[4];
+                else if (kill > 30)
+                    enemy[i].pos.x -= speed[3];
+                else if (kill > 20)
+                    enemy[i].pos.x -= speed[2];
+                else if (kill > 10)
+                    enemy[i].pos.x -= speed[1];
+                else
+                enemy[i].pos.x -= speed[0];
+
+            }
+            else if (enemy[i].pos.x <= SCREEN_W / 2) {
+                if (kill > 100)
+                    enemy[i].pos.x += speed[7];
+                else if (kill > 80)
+                    enemy[i].pos.x += speed[6];
+                else if (kill > 60)
+                    enemy[i].pos.x += speed[5];
+                else if (kill > 40)
+                    enemy[i].pos.x += speed[4];
+                else if (kill > 30)
+                    enemy[i].pos.x += speed[3];
+                else if (kill > 20)
+                    enemy[i].pos.x += speed[2];
+                else if (kill > 10)
+                    enemy[i].pos.x += speed[1];
+                else
+                enemy[i].pos.x += speed[0];
+            }
+
+
         }
         
     }
@@ -184,8 +222,42 @@ void enemy_moveY(){
 
         if (enemy[i].type == 0)
         {
-            if (enemy[i].pos.y < SCREEN_H / 2)  enemy[i].pos.y += speed[0];
-            else enemy[i].pos.y -= speed[0];
+            if (enemy[i].pos.y < SCREEN_H / 2) {
+                if (kill > 100)
+                    enemy[i].pos.y += speed[7];
+                else if (kill > 80)
+                    enemy[i].pos.y += speed[6];
+                else if (kill > 60)
+                    enemy[i].pos.y += speed[5];
+                else if (kill > 40)
+                    enemy[i].pos.y += speed[4];
+                else if (kill > 30)
+                    enemy[i].pos.y += speed[3];
+                else if (kill > 20)
+                    enemy[i].pos.y += speed[2];
+                else if (kill > 10)
+                    enemy[i].pos.y += speed[1];
+                else
+                    enemy[i].pos.y += speed[0];
+            }
+            else if (enemy[i].pos.y >= SCREEN_H / 2) {
+                if (kill > 100)
+                    enemy[i].pos.y -= speed[7];
+                else if (kill > 80)
+                    enemy[i].pos.y -= speed[6];
+                else if (kill > 60)
+                    enemy[i].pos.y -= speed[5];
+                else if (kill > 40)
+                    enemy[i].pos.y -= speed[4];
+                else if (kill > 30)
+                    enemy[i].pos.y -= speed[3];
+                else if (kill > 20)
+                    enemy[i].pos.y -= speed[2];
+                else if (kill > 10)
+                    enemy[i].pos.y -= speed[1];
+                else
+                    enemy[i].pos.y -= speed[0];
+            }
         }
        
     }

@@ -1,16 +1,11 @@
 #include "all.h"
 
 int enemy_shot_state;
-extern int game_timer;
-float diagonal;
-int enemy_shot_flug;
 
 extern OBJ2D enemy[ENEMY_MAX];
 extern OBJ2D tower;
 
 OBJ2D enemy_shot;
-OBJ2D vec;
-OBJ2D v;
 Sprite* sprEnemyshot;
 
 
@@ -21,8 +16,6 @@ void enemy_shot_init()
 {
 	//enemy_shot_state‚ğ0
 	enemy_shot_state = 0;
-    diagonal = 0;
-    enemy_shot_flug = 1;
 }
 //--------------------------------------
 // @enemy_shot‚ÌI—¹ˆ—
@@ -71,7 +64,7 @@ void enemy_shot_update()
     case 2:
         //////// ’Êí ////////
 
-        enemy_shot_flug++;
+
         break;
       
     }
