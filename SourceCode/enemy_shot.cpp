@@ -72,7 +72,6 @@ void enemy_shot_update()
         //////// �ʏ펞 ////////
 
         enemy_shot_flug++;
-        enemy_shot_move();
         break;
       
     }
@@ -108,34 +107,3 @@ void enemy_launch_shot(OBJ2D* v)
     v->pos.y = vec.y * speed;
 }
 #endif
-
-void enemy_shot_move()
-{
-    if (game_timer>0)
-    {
-        for (int i = 0; i < ENEMY_MAX; i++) {
-            if (enemy[i].type == 1) {
-
-
-
-        enemy_shot.pos.x += v.pos.x;
-        enemy_shot.pos.y += v.pos.y;
-
-                enemy_shot_flug--;
-               /* enemy_shot.pos = enemy[i].pos;
-                enemy_shot.angle = enemy_shot_angle;
-                if (enemy[i].pos.x < SCREEN_W && enemy[i].pos.y <= 0)enemy_shot_angle=90.0f;
-                else if (enemy[i].pos.x > 0 && enemy[i].pos.y >= 720)enemy_shot_angle=-90.0f;
-                if (enemy[i].pos.y < SCREEN_H && enemy[i].pos.x >= SCREEN_W)enemy_shot_angle=180.0f;
-                else if (enemy[i].pos.y > 0 && enemy[i].pos.x <= 0)enemy_shot_angle=0.0f;*/
-            }
-           
-
-        }
-       
-        //enemy_shot.pos.x += cosf(ToRadian(enemy_shot.angle - 90)) * 10;
-        //enemy_shot.pos.y += sinf(ToRadian(enemy_shot.angle - 90)) * 10;
-
-
-    }
-}

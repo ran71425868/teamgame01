@@ -4,7 +4,7 @@
 
 int rndX,rndY;
 int enemy_state;
-int speed[10] = { 2,2.5,3,3.5,4,5,6,7,7.5,8 };
+int speed[8] = { 1.5,2,2.5,3,3.5,5,5.5,7};
 
 extern float angle;
 
@@ -34,10 +34,10 @@ enemySet[] = {
     {0,{  500, 0}, 0},
     {0,{  100, 0}, 0},
     {1,{  200, 0}, 0},
-    {1,{  1000,720 },1 },
-    {1,{  700, 720}, 1},
-    {2,{  800, 720}, 2},
-    {2,{  400, 720}, 2},
+    {1,{  1000,720 },0},
+    {1,{  700, 720}, 0},
+    {2,{  800, 720}, 0},
+    {2,{  400, 720}, 0},
     {-1,{  -1, -1 }, -1},
 };
 //--------------------------------------
@@ -176,11 +176,7 @@ void enemy_moveX() {
             if (enemy[i].pos.x > SCREEN_W / 2) enemy[i].pos.x -= speed[0];
             else enemy[i].pos.x += speed[0];
         }
-        else if (enemy[i].type == 1)
-        {
-            if (enemy[i].pos.x < SCREEN_W-32 && enemy[i].pos.y <= 0)enemy[i].pos.x += speed[1];
-            else if (enemy[i].pos.x > 32 && enemy[i].pos.y >= 650)enemy[i].pos.x -= speed[1];
-        }
+        
     }
 }
 void enemy_moveY(){
@@ -191,28 +187,8 @@ void enemy_moveY(){
             if (enemy[i].pos.y < SCREEN_H / 2)  enemy[i].pos.y += speed[0];
             else enemy[i].pos.y -= speed[0];
         }
-        else if (enemy[i].type == 1)
-        {
-            if (enemy[i].pos.y < SCREEN_H-70 && enemy[i].pos.x >= SCREEN_W-32)enemy[i].pos.y += speed[1];
-            else if (enemy[i].pos.y > 0 && enemy[i].pos.x <= 32)enemy[i].pos.y -= speed[1];
-        }
+       
     }
-}
-
-void enemy_bullet()
-{
-    VECTOR2 vec;
-    vec.x = tower.pos.x - enemy[i].pos.x;
-    vec.y = tower.pos.y - enemy[i].pos.y;
-
-    float diagonal = sqrtf(vec.x * vec.x + vec.y * vec.y);
-
-    vec.x = vec.x / diagonal;
-    vec.y = vec.y / diagonal;
-
-    float speed = 10.0f;
-    v.pos.x = vec.x * speed;
-    v.pos.y = vec.y * speed;
 }
 
 void moveEnemy0(OBJ2D* obj)
