@@ -19,7 +19,7 @@ int APIENTRY wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int) {
 			switch (curScene) {
 			case SCENE_TITLE:
 				title_deinit();
-				break;
+				break;  
 
 			case SCENE_GAME:
 				game_deinit();
